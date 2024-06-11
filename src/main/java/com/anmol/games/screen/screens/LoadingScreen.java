@@ -89,7 +89,7 @@ public class LoadingScreen extends Screen {
         Thread thread = new Thread(() -> {
             Assets.loadAll(screenController.app.getAssetManager());
             screenController.initAll();
-        });
+        }, "LoadingScreenThread");
         thread.setUncaughtExceptionHandler((t1, e) -> error = e);
         thread.start();
     }
@@ -109,9 +109,10 @@ public class LoadingScreen extends Screen {
         cornerNode.getChildren().forEach(spatial -> spatial.setLocalScale(0.9f + FastMath.sin(t) * 0.1f));
 
         if (c >= 1) {
-            switchScreen(screenController.introScreen);
+            switchScreen(screenController.startScreen);
+            return;
         }
-        if (!Assets.allLoaded) {
+        if (!screenController.isAllLoaded) {
             c = 1 - FastMath.exp(-t / 24);
         } else {
             if (Constants.IS_DEVELOPMENT) {

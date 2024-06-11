@@ -26,7 +26,7 @@ public class SplashScreen extends Screen {
         Thread thread = new Thread(() -> {
             Assets.loadInterface(screenController.app.getAssetManager());
             screenController.loadingScreen.init(screenController);
-        });
+        }, "SplashScreenThread");
         thread.setUncaughtExceptionHandler((t, e) -> error = e);
         thread.start();
     }
