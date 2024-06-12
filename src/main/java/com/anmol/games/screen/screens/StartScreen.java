@@ -107,18 +107,10 @@ public class StartScreen extends Screen {
                 case play -> {
                     // todo
                 }
-                case howToPlay -> {
-                    // todo
-                }
-                case settings -> {
-                    // todo
-                }
-                case aboutCreator -> {
-                    switchScreen(screenController.aboutCreatorScreen);
-                }
-                case exit -> {
-                    screenController.app.stop();
-                }
+                case howToPlay -> switchScreen(screenController.howToPlayScreen);
+                case settings -> switchScreen(screenController.settingsScreen);
+                case aboutCreator -> switchScreen(screenController.aboutCreatorScreen);
+                case exit -> screenController.app.stop();
             }
         }
     }
