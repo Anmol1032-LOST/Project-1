@@ -19,7 +19,7 @@ public class Assets {
     public static boolean allLoaded = false;
 
     public static void loadInterface(AssetManager assetManager) {
-        for (String asset : new String[]{"Textures/GUI/Box.png", "Textures/GUI/Corner.png", "Textures/GUI/Rect.png", "Textures/GUI/SelectedBox.png", "Textures/GUI/SelectedRect.png"}) {
+        for (String asset : new String[]{"Textures/GUI/Box.png", "Textures/GUI/Corner.png", "Textures/GUI/Rect.png", "Textures/GUI/SelectedBox.png", "Textures/GUI/SelectedRect.png", "Textures/Caustic.png"}) {
             Texture texture = assetManager.loadTexture(asset);
             texture.setWrap(Texture.WrapMode.Repeat);
             textures.put(asset, texture);
@@ -33,7 +33,7 @@ public class Assets {
     }
 
     public static void loadAll(AssetManager assetManager) {
-        for (String asset : new String[]{"Interface/Text/Anmol.png", "Interface/Text/Lost.png", "Interface/Text/Lost-Full.png", "Textures/Caustic.png", "Textures/CrossHair.png", "Textures/Screen0/Play.png", "Textures/Screen0/Purchase.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Elements.png"}) {
+        for (String asset : new String[]{"Interface/Text/Anmol.png", "Interface/Text/Lost.png", "Interface/Text/Lost-Full.png", "Textures/CrossHair.png", "Textures/Screen0/Play.png", "Textures/Screen0/Purchase.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Elements.png"}) {
             Texture texture = assetManager.loadTexture(asset);
             texture.setWrap(Texture.WrapMode.Repeat);
             textures.put(asset, texture);

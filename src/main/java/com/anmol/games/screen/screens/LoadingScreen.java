@@ -115,7 +115,7 @@ public class LoadingScreen extends Screen {
         Vector2f pos = screenController.app.getInputManager().getCursorPosition();
         vector3f.set(FastMath.interpolateLinear(tpf * 10, vector3f.x, pos.x), FastMath.interpolateLinear(tpf * 10, vector3f.y, pos.y), 999);
         selectedBox.setLocalTranslation(vector3f);
-        GuiUtils.updateScreen(cornerNode, t);
+        GuiUtils.updateScreen(cornerNode);
 
         if (c >= 1) {
             Sounds.initSound.play();

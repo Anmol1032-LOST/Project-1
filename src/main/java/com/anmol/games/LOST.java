@@ -16,6 +16,7 @@ public class LOST extends SimpleApplication {
     public static float width;
     public static float height;
     ScreenController screenController;
+    public static float t = 0;
 
     public LOST() {
         super(new AppState[0]);
@@ -81,6 +82,7 @@ public class LOST extends SimpleApplication {
 
     @Override
     public void simpleUpdate(float tpf) {
+        t += tpf;
         if (emptyFrames > 0) {
             emptyFrames -= 1;
             return;

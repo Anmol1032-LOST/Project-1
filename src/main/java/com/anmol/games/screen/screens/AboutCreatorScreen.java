@@ -4,7 +4,6 @@ import com.anmol.games.Assets;
 import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
-import com.anmol.games.screen.ScreenController;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
 import com.jme3.font.Rectangle;
@@ -50,7 +49,7 @@ public class AboutCreatorScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
-        GuiUtils.updateScreen(cornerNode, t);
+        GuiUtils.updateScreen(cornerNode);
     }
 
     @Override

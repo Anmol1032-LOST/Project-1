@@ -3,7 +3,6 @@ package com.anmol.games.screen.screens;
 import com.anmol.games.Assets;
 import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
-import com.anmol.games.Sounds;
 import com.anmol.games.screen.Screen;
 import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapFont;
@@ -83,7 +82,7 @@ public class StartScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
-        GuiUtils.updateScreen(cornerNode, t);
+        GuiUtils.updateScreen(cornerNode);
 
         final CollisionResults collisionResults = new CollisionResults();
         vec1.set(screenController.app.getInputManager().getCursorPosition().x, screenController.app.getInputManager().getCursorPosition().y, 1000);

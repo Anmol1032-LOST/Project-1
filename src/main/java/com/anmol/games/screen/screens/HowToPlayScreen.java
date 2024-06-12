@@ -49,7 +49,7 @@ public class HowToPlayScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
-        GuiUtils.updateScreen(cornerNode, t);
+        GuiUtils.updateScreen(cornerNode);
     }
 
     @Override
