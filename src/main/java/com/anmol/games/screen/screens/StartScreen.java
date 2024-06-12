@@ -1,17 +1,16 @@
 package com.anmol.games.screen.screens;
 
 import com.anmol.games.Assets;
+import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
-import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
 import com.jme3.font.Rectangle;
-import com.jme3.material.Material;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.RenderState;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
@@ -20,69 +19,59 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.CenterQuad;
 
 public class StartScreen extends Screen {
+    final Node cornerNode = new Node();
+    final Node intractable = new Node();
+    final String play = "PLAY";
+    final String howToPlay = "How To Play";
+    final String settings = "Settings";
+    final String aboutCreator = "About the Creator";
+    final String exit = "Exit";
     float t = 0;
-    Node cornerNode = new Node();
-    Node intractable = new Node();
-    Geometry selectedBox;
+    Geometry selectedRect;
+    Vector3f vec1 = new Vector3f();
+    Vector3f vec2 = new Vector3f(0, 0, -1);
 
     @Override
     protected void init() {
+        screenController.app.getInputManager().addMapping("StartScreen.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        screenController.app.getInputManager().addListener(this, "StartScreen.click");
         guiNode.attachChild(cornerNode);
         guiNode.attachChild(intractable);
         {
-            selectedBox = new Geometry("", new Mesh());
-            selectedBox.setMaterial(Assets.mat.clone());
-            selectedBox.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/SelectedRect.png"));
-            selectedBox.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-            selectedBox.setLocalScale(1.1f);
-            guiNode.attachChild(selectedBox);
+            selectedRect = new Geometry("", new Mesh());
+            selectedRect.setMaterial(Assets.mat.clone());
+            selectedRect.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/SelectedRect.png"));
+            selectedRect.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+            selectedRect.setLocalScale(1.1f);
+            guiNode.attachChild(selectedRect);
         }
-        {
-            Geometry bg = new Geometry("", new CenterQuad(LOST.width * 3 / 4f, LOST.height * 3 / 4f));
-            bg.setMaterial(Assets.mat.clone());
-            bg.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/Rect.png"));
-            bg.setLocalTranslation(LOST.width / 2, LOST.height / 2, 0);
-            guiNode.attachChild(bg);
-        }
+        GuiUtils.makeScreen(guiNode, cornerNode);
 
-        {
-            Material mat = Assets.mat.clone();
-            mat.setTexture("ColorMap", Assets.textures.get("Textures/GUI/Corner.png"));
-            mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-            int i = 0;
-            for (Vector3f v : new Vector3f[]{new Vector3f(LOST.width / 8, LOST.height / 8, 0), new Vector3f(LOST.width * 7 / 8, LOST.height / 8, 0), new Vector3f(LOST.width * 7 / 8, LOST.height * 7 / 8, 0), new Vector3f(LOST.width / 8, LOST.height * 7 / 8, 0)}) {
-                Geometry c = new Geometry("", new CenterQuad(128, 128));
-                c.setMaterial(mat);
-                c.rotate(0, 0, FastMath.HALF_PI * (i++));
-                c.setLocalTranslation(v);
-                cornerNode.attachChild(c);
-            }
-        }
+        int i = -2;
+        for (String s : new String[]{play, howToPlay, settings, aboutCreator, exit}) {
+            Geometry geometry = new Geometry("", new CenterQuad(64 * 9, 64));
+            geometry.setUserData("work", s);
+            geometry.setLocalTranslation(LOST.width / 2, LOST.height / 2 - 72 * i, 2);
+            geometry.setMaterial(Assets.mat.clone());
+            geometry.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/Rect.png"));
+            intractable.attachChild(geometry);
 
-        int i = -1;
-        for (String s: new String[]{"START", "SETTINGS", "QUIT"}) {
-            Geometry start = new Geometry("", new CenterQuad(64*9, 64));
-            start.setUserData("work", s);
-            start.setLocalTranslation(LOST.width/2, LOST.height/2-72*i, 2);
-            start.setMaterial(Assets.mat.clone());
-            start.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/Rect.png"));
-            intractable.attachChild(start);
-
-            BitmapText startText = new BitmapText(Assets.font.get("Font"));
-            startText.setText(s);
-            startText.setSize(startText.getFont().getCharSet().getRenderedSize() / 3f);
-            startText.setBox(new Rectangle(LOST.width / 2 - 32*9, LOST.height / 2 - 32-72*i, 64*9, 64));
-            startText.setAlignment(BitmapFont.Align.Center);
-            startText.setVerticalAlignment(BitmapFont.VAlign.Center);
-            startText.setLocalTranslation(0, startText.getHeight(), 3);
-            guiNode.attachChild(startText);
-
+            BitmapText text = new BitmapText(Assets.font.get("Font"));
+            text.setText(s);
+            text.setSize(text.getFont().getCharSet().getRenderedSize() / 3f);
+            text.setBox(new Rectangle(LOST.width / 2 - 32 * 9, LOST.height / 2 - 32 - 72 * i, 64 * 9, 64));
+            text.setAlignment(BitmapFont.Align.Center);
+            text.setVerticalAlignment(BitmapFont.VAlign.Center);
+            text.setLocalTranslation(0, text.getHeight(), 3);
+            guiNode.attachChild(text);
             i++;
         }
     }
 
     @Override
     protected void show() {
+        t = 0;
+        selectedRect.setUserData("selected", null);
     }
 
     @Override
@@ -93,7 +82,7 @@ public class StartScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
-        cornerNode.getChildren().forEach(spatial -> spatial.setLocalScale(0.9f + FastMath.sin(t) * 0.1f));
+        GuiUtils.updateScreen(cornerNode, t);
 
         final CollisionResults collisionResults = new CollisionResults();
         vec1.set(screenController.app.getInputManager().getCursorPosition().x, screenController.app.getInputManager().getCursorPosition().y, 1000);
@@ -101,19 +90,37 @@ public class StartScreen extends Screen {
         intractable.collideWith(ray, collisionResults);
         if (collisionResults.size() > 0) {
             final Geometry g = collisionResults.getCollision(0).getGeometry();
-            selectedBox.setLocalTranslation(g.getLocalTranslation().add(0, 0, 1));
-            selectedBox.setMesh(g.getMesh().clone());
+            selectedRect.setLocalTranslation(g.getLocalTranslation().add(0, 0, 1));
+            selectedRect.setMesh(g.getMesh().clone());
+            selectedRect.setUserData("selected", g);
         } else {
-            selectedBox.setMesh(new Mesh());
+            selectedRect.setMesh(new Mesh());
+            selectedRect.setUserData("selected", null);
         }
     }
 
-    Vector3f vec1=new Vector3f();
-    Vector3f vec2=new Vector3f(0, 0, -1);
-
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-
+        if (!isPressed && name.equals("StartScreen.click") && selectedRect.getUserData("selected") != null) {
+            String input = ((Geometry) selectedRect.getUserData("selected")).getUserData("work");
+            switch (input) {
+                case play -> {
+                    // todo
+                }
+                case howToPlay -> {
+                    // todo
+                }
+                case settings -> {
+                    // todo
+                }
+                case aboutCreator -> {
+                    switchScreen(screenController.aboutCreatorScreen);
+                }
+                case exit -> {
+                    screenController.app.stop();
+                }
+            }
+        }
     }
 
     @Override

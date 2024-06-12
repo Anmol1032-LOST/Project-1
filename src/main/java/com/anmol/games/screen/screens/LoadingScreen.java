@@ -2,6 +2,7 @@ package com.anmol.games.screen.screens;
 
 import com.anmol.games.Assets;
 import com.anmol.games.Constants;
+import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
 import com.jme3.font.BitmapFont;
@@ -20,7 +21,7 @@ import com.jme3.scene.shape.CenterQuad;
 
 public class LoadingScreen extends Screen {
     final Vector3f vector3f = new Vector3f();
-    Node cornerNode = new Node();
+    final Node cornerNode = new Node();
     Geometry selectedBox;
     Geometry loadingBar;
     Geometry loadingBar_;
@@ -39,21 +40,15 @@ public class LoadingScreen extends Screen {
             selectedBox.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
             cornerNode.attachChild(selectedBox);
         }
-        {
-            Geometry bg = new Geometry("", new CenterQuad(LOST.width * 3 / 4f, LOST.height * 3 / 4f));
-            bg.setMaterial(Assets.mat.clone());
-            bg.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/GUI/Rect.png"));
-            bg.setLocalTranslation(LOST.width / 2, LOST.height / 2, 0);
-            guiNode.attachChild(bg);
-        }
+        GuiUtils.makeScreen(guiNode, cornerNode);
 
         {
-            Material mat = Assets.mat.clone();
+            final Material mat = Assets.mat.clone();
             mat.setTexture("ColorMap", Assets.textures.get("Textures/GUI/Corner.png"));
             mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
             int i = 0;
             for (Vector3f v : new Vector3f[]{new Vector3f(LOST.width / 8, LOST.height / 8, 0), new Vector3f(LOST.width * 7 / 8, LOST.height / 8, 0), new Vector3f(LOST.width * 7 / 8, LOST.height * 7 / 8, 0), new Vector3f(LOST.width / 8, LOST.height * 7 / 8, 0)}) {
-                Geometry c = new Geometry("", new CenterQuad(128, 128));
+                final Geometry c = new Geometry("", new CenterQuad(128, 128));
                 c.setMaterial(mat);
                 c.rotate(0, 0, FastMath.HALF_PI * (i++));
                 c.setLocalTranslation(v);
@@ -82,6 +77,18 @@ public class LoadingScreen extends Screen {
             loadingText.setLocalTranslation(0, loadingText.getHeight(), 3);
             guiNode.attachChild(loadingText);
         }
+
+        {
+            final BitmapText text = new BitmapText(Assets.font.get("FontMetal"));
+            text.setColor(ColorRGBA.White);
+            text.setText(Constants.GAME_NAME);
+            text.setSize(text.getFont().getCharSet().getRenderedSize()*2);
+            text.setBox(new Rectangle(0, 0, LOST.width, LOST.height));
+            text.setAlignment(BitmapFont.Align.Center);
+            text.setVerticalAlignment(BitmapFont.VAlign.Center);
+            text.setLocalTranslation(0, text.getHeight(), 5);
+            guiNode.attachChild(text);
+        }
     }
 
     @Override
@@ -105,8 +112,7 @@ public class LoadingScreen extends Screen {
         Vector2f pos = screenController.app.getInputManager().getCursorPosition();
         vector3f.set(FastMath.interpolateLinear(tpf * 10, vector3f.x, pos.x), FastMath.interpolateLinear(tpf * 10, vector3f.y, pos.y), 999);
         selectedBox.setLocalTranslation(vector3f);
-
-        cornerNode.getChildren().forEach(spatial -> spatial.setLocalScale(0.9f + FastMath.sin(t) * 0.1f));
+        GuiUtils.updateScreen(cornerNode, t);
 
         if (c >= 1) {
             switchScreen(screenController.startScreen);
