@@ -10,7 +10,6 @@ import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 
 public class AttackAppState extends Screen {
-    static int element = 0;
     boolean A2 = false;
     float A2Timer = 0;
 
@@ -42,26 +41,26 @@ public class AttackAppState extends Screen {
         if (A2) {
             A2Timer += tpf;
         }
-        GlobalVariables.data.player_B1Time[element] += tpf;
-        GlobalVariables.data.player_B2Time[element] += tpf;
-        GlobalVariables.data.player_XTime[element] += tpf;
+        GlobalVariables.data.player_B1Time[GlobalVariables.element] += tpf;
+        GlobalVariables.data.player_B2Time[GlobalVariables.element] += tpf;
+        GlobalVariables.data.player_XTime[GlobalVariables.element] += tpf;
 
         for (int i = 0; i < 6; i++) {
-            if (i == element) continue;
+            if (i == GlobalVariables.element) continue;
             float v = 3.7f;
             GlobalVariables.data.player_B1Time[i] += tpf / v;
             GlobalVariables.data.player_B2Time[i] += tpf / v;
             GlobalVariables.data.player_XTime[i] += tpf / v;
         }
 
-        if (GlobalVariables.data.player_B1Time[element] >= 10) {
-            GlobalVariables.data.player_B1Time[element] = 10;
+        if (GlobalVariables.data.player_B1Time[GlobalVariables.element] >= 10) {
+            GlobalVariables.data.player_B1Time[GlobalVariables.element] = 10;
         }
-        if (GlobalVariables.data.player_B2Time[element] >= 27) {
-            GlobalVariables.data.player_B2Time[element] = 27;
+        if (GlobalVariables.data.player_B2Time[GlobalVariables.element] >= 27) {
+            GlobalVariables.data.player_B2Time[GlobalVariables.element] = 27;
         }
-        if (GlobalVariables.data.player_XTime[element] >= 71) {
-            GlobalVariables.data.player_XTime[element] = 71;
+        if (GlobalVariables.data.player_XTime[GlobalVariables.element] >= 71) {
+            GlobalVariables.data.player_XTime[GlobalVariables.element] = 71;
         }
 
         elementalUpdate(tpf);
@@ -83,41 +82,41 @@ public class AttackAppState extends Screen {
                 A2Timer = 0;
             }
             case "B1" -> {
-                if (GlobalVariables.data.player_B1Time[element] >= Constants.B1_TIME) {
+                if (GlobalVariables.data.player_B1Time[GlobalVariables.element] >= Constants.B1_TIME) {
                     if (GlobalVariables.data.player_elementalStamina > 0.13f) {
                         GlobalVariables.data.player_elementalStamina -= 0.13f;
-                        GlobalVariables.data.player_B1Time[element] = 0;
+                        GlobalVariables.data.player_B1Time[GlobalVariables.element] = 0;
                         B1();
                     }
                 }
             }
             case "B2" -> {
-                if (GlobalVariables.data.player_B2Time[element] >= Constants.B2_TIME) {
+                if (GlobalVariables.data.player_B2Time[GlobalVariables.element] >= Constants.B2_TIME) {
                     if (GlobalVariables.data.player_elementalStamina > 0.37f) {
                         GlobalVariables.data.player_elementalStamina -= 0.37f;
-                        GlobalVariables.data.player_B2Time[element] = 0;
+                        GlobalVariables.data.player_B2Time[GlobalVariables.element] = 0;
                         B2();
                     }
                 }
             }
             case "X" -> {
-                if (GlobalVariables.data.player_XTime[element] >= Constants.X_TIME) {
+                if (GlobalVariables.data.player_XTime[GlobalVariables.element] >= Constants.X_TIME) {
                     if (GlobalVariables.data.player_elementalStamina > 0.45f) {
                         GlobalVariables.data.player_elementalStamina -= 0.45f;
-                        GlobalVariables.data.player_XTime[element] = 0;
+                        GlobalVariables.data.player_XTime[GlobalVariables.element] = 0;
                         X();
                     }
                 }
             }
             case "Up" -> {
                 if (isPressed) {
-                    element += 1;
-                    element %= 6;
+                    GlobalVariables.element += 1;
+                    GlobalVariables.element %= 6;
                 }
             }
             case "Dn" -> {
                 if (isPressed) {
-                    element = (element + 5) % 6;
+                    GlobalVariables.element = (GlobalVariables.element + 5) % 6;
                 }
             }
         }

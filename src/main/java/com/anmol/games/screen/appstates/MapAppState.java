@@ -8,7 +8,7 @@ import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.scene.Spatial;
 
 public class MapAppState extends Screen {
-    public static float SCALE = 128;
+    public final float SCALE = 128;
     RigidBodyControl rigidBodyControl;
 
     @Override

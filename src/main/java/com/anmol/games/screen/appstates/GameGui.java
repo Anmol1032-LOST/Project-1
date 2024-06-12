@@ -199,7 +199,7 @@ public class GameGui extends Screen {
         stamina.setMesh(new CenterQuad(LOST.width / 3 * GlobalVariables.data.player_stamina, size * 2 / 3));
         elementalStamina.setMesh(new CenterQuad(LOST.width / 3 * GlobalVariables.data.player_elementalStamina, size / 3));
 
-        element.getMaterial().setTexture("ColorMap", textures[AttackAppState.element]); // todo
+        element.getMaterial().setTexture("ColorMap", textures[GlobalVariables.element]); // todo
 
         bitmapText.setText(loopText);
         info.setText("");
@@ -220,9 +220,9 @@ public class GameGui extends Screen {
 //            }
 //        }
 
-        b1CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B1Time[AttackAppState.element] / Constants.B1_TIME));
-        b2CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B2Time[AttackAppState.element] / Constants.B2_TIME));
-        xCD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_XTime[AttackAppState.element] / Constants.X_TIME));
+        b1CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B1Time[GlobalVariables.element] / Constants.B1_TIME));
+        b2CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B2Time[GlobalVariables.element] / Constants.B2_TIME));
+        xCD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_XTime[GlobalVariables.element] / Constants.X_TIME));
     }
 
     @Override
