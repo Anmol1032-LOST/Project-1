@@ -1,6 +1,7 @@
 package com.anmol.games.screen;
 
 import com.anmol.games.LOST;
+import com.anmol.games.screen.appstates.GameGui;
 import com.anmol.games.screen.appstates.MapAppState;
 import com.anmol.games.screen.appstates.PlayerAppState;
 import com.anmol.games.screen.screens.*;
@@ -17,6 +18,7 @@ public class ScreenController {
     public final MainGameScreen mainGameScreen = new MainGameScreen();
     public final MapAppState mapAppState = new MapAppState();
     public final PlayerAppState playerAppState = new PlayerAppState();
+    public final GameGui gameGui = new GameGui();
     public boolean isAllLoaded = false;
 
     public ScreenController(LOST app) {
@@ -36,6 +38,7 @@ public class ScreenController {
         mainGameScreen.simpleUpdate(tpf);
         mapAppState.simpleUpdate(tpf);
         playerAppState.simpleUpdate(tpf);
+        gameGui.simpleUpdate(tpf);
 
         isAllLoaded = startScreen.loaded;
     }
@@ -49,5 +52,6 @@ public class ScreenController {
         mainGameScreen.init(this);
         mapAppState.init(this);
         playerAppState.init(this);
+        gameGui.init(this);
     }
 }

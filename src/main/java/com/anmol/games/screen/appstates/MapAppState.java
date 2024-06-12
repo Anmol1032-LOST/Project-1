@@ -10,6 +10,7 @@ import com.jme3.scene.Spatial;
 public class MapAppState extends Screen {
     public static float SCALE = 128;
     RigidBodyControl rigidBodyControl;
+
     @Override
     protected void init() {
         Spatial map = Assets.models.get("Models/LostMap.glb");
