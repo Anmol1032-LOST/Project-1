@@ -1,17 +1,15 @@
 package com.anmol.games.screen;
 
-import com.anmol.games.LOST;
 import com.anmol.games.Sounds;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
-import com.jme3.math.FastMath;
 import com.jme3.scene.Node;
 
 public abstract class Screen implements ActionListener, AnalogListener {
     protected final Node rootNode = new Node();
     protected final Node guiNode = new Node();
-    protected boolean enabled = false;
     public boolean loaded = false;
+    protected boolean enabled = false;
     protected ScreenController screenController;
 
     public void init(ScreenController screenController) {
@@ -45,8 +43,8 @@ public abstract class Screen implements ActionListener, AnalogListener {
 
     public abstract void update(final float tpf);
 
-    public void simpleUpdate(final  float tpf) {
-        if (enabled && loaded) update(Math.min(tpf, 1/35f));
+    public void simpleUpdate(final float tpf) {
+        if (enabled && loaded) update(Math.min(tpf, 1 / 35f));
     }
 
     @Override

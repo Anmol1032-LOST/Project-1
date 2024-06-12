@@ -15,6 +15,8 @@ import com.jme3.scene.Node;
 public class HowToPlayScreen extends Screen {
     final Node cornerNode = new Node();
     final String data = "Use W, A, S, D to move.\nHold shift to dash.\nClick Mouse Left click to normal attack.\nHold and release Mouse right click for charged attack.\nUse E, Q, X for elemental Attack.\n(Elemental Attack requires Elemental stamina and cooldown)\nUse G to interact.\n\nFind out more by playing the game.";
+    float t;
+
     @Override
     protected void init() {
         screenController.app.getInputManager().addMapping("HowToPlayScreen.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
@@ -26,8 +28,8 @@ public class HowToPlayScreen extends Screen {
             BitmapText text = new BitmapText(Assets.font.get("Font"));
             text.setText(data);
             text.setColor(ColorRGBA.White);
-            text.setSize(text.getFont().getCharSet().getRenderedSize()/2f);
-            text.setBox(new Rectangle(LOST.width/8, LOST.height/8, LOST.width * 3 / 4f, LOST.height * 3 / 4f));
+            text.setSize(text.getFont().getCharSet().getRenderedSize() / 2f);
+            text.setBox(new Rectangle(LOST.width / 8, LOST.height / 8, LOST.width * 3 / 4f, LOST.height * 3 / 4f));
             text.setAlignment(BitmapFont.Align.Center);
             text.setVerticalAlignment(BitmapFont.VAlign.Center);
             text.setLocalTranslation(0, text.getHeight(), 3);
@@ -45,7 +47,6 @@ public class HowToPlayScreen extends Screen {
 
     }
 
-    float t;
     @Override
     public void update(float tpf) {
         t += tpf;

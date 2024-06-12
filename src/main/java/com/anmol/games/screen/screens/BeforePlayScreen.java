@@ -16,13 +16,15 @@ public class BeforePlayScreen extends Screen {
     final ColorRGBA blankColor = new ColorRGBA(0, 0, 0, 0);
     Geometry icon;
     Geometry blank;
+    float t;
+
     @Override
     protected void init() {
         guiNode.attachChild(cornerNode);
         GuiUtils.makeScreen(guiNode, cornerNode);
 
         {
-            icon = new Geometry("", new CenterQuad(LOST.height*3/4 - 64, LOST.height*3/4 - 64));
+            icon = new Geometry("", new CenterQuad(LOST.height * 3 / 4 - 64, LOST.height * 3 / 4 - 64));
             icon.setMaterial(Assets.mat.clone());
             icon.getMaterial().setTexture("ColorMap", Assets.textures.get("Interface/Icon/Icon4096.png"));
             icon.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
@@ -51,20 +53,19 @@ public class BeforePlayScreen extends Screen {
 
     }
 
-    float t;
     @Override
     public void update(float tpf) {
         t += tpf;
         if (t < 7) {
-            blankColor.setAlpha(t/7);
+            blankColor.setAlpha(t / 7);
             icon.rotate(0, 0, (t - 1) * tpf);
             GuiUtils.updateScreen(cornerNode);
         } else if (t < 14) {
-            float c = (t-7)/7;
+            float c = (t - 7) / 7;
             icon.rotate(0, 0, (t - 1) * tpf);
-            icon.setLocalScale(FastMath.pow((1+c), 15));
+            icon.setLocalScale(FastMath.pow((1 + c), 15));
         } else {
-            switchScreen(screenController.startScreen);
+            switchScreen(screenController.mainGameScreen);
         }
     }
 

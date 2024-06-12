@@ -79,7 +79,7 @@ public class LoadingScreen extends Screen {
             final BitmapText text = new BitmapText(Assets.font.get("FontMetal"));
             text.setColor(ColorRGBA.White);
             text.setText(Constants.GAME_NAME);
-            text.setSize(text.getFont().getCharSet().getRenderedSize()*2);
+            text.setSize(text.getFont().getCharSet().getRenderedSize() * 2);
             text.setBox(new Rectangle(0, 0, LOST.width, LOST.height));
             text.setAlignment(BitmapFont.Align.Center);
             text.setVerticalAlignment(BitmapFont.VAlign.Center);
@@ -93,6 +93,7 @@ public class LoadingScreen extends Screen {
         Thread thread = new Thread(() -> {
             Sounds.load(screenController.app.getAssetManager());
             Assets.loadAll(screenController.app.getAssetManager());
+            GlobalVariables.data = DataLoader.load();
             screenController.initAll();
         }, "LoadingScreenThread");
         thread.setUncaughtExceptionHandler((t1, e) -> error = e);

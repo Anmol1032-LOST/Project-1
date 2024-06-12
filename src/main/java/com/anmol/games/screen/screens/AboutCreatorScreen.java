@@ -15,6 +15,8 @@ import com.jme3.scene.Node;
 public class AboutCreatorScreen extends Screen {
     final Node cornerNode = new Node();
     final String data = "Hi! So finally someone Click on it.\nMy name is Anmol and...\nthat's what you...\ncan find about me here.\n\nThis is just a game that I created and...\nThere's Nothing Special Here.";
+    float t;
+
     @Override
     protected void init() {
         screenController.app.getInputManager().addMapping("AboutCreatorScreen.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
@@ -26,8 +28,8 @@ public class AboutCreatorScreen extends Screen {
             BitmapText text = new BitmapText(Assets.font.get("Font"));
             text.setText(data);
             text.setColor(ColorRGBA.White);
-            text.setSize(text.getFont().getCharSet().getRenderedSize()/2f);
-            text.setBox(new Rectangle(LOST.width/8, LOST.height/8, LOST.width * 3 / 4f, LOST.height * 3 / 4f));
+            text.setSize(text.getFont().getCharSet().getRenderedSize() / 2f);
+            text.setBox(new Rectangle(LOST.width / 8, LOST.height / 8, LOST.width * 3 / 4f, LOST.height * 3 / 4f));
             text.setAlignment(BitmapFont.Align.Center);
             text.setVerticalAlignment(BitmapFont.VAlign.Center);
             text.setLocalTranslation(0, text.getHeight(), 3);
@@ -45,7 +47,6 @@ public class AboutCreatorScreen extends Screen {
 
     }
 
-    float t;
     @Override
     public void update(float tpf) {
         t += tpf;

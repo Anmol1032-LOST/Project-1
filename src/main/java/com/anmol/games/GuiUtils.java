@@ -16,7 +16,7 @@ public class GuiUtils {
 
     public static void makeScreen(Node guiNode, Node cornerNode, boolean createBg) {
         if (createBg) {
-            Geometry bg = new Geometry("", new CenterQuad(LOST.width*1.5f, LOST.height*1.5f));
+            Geometry bg = new Geometry("", new CenterQuad(LOST.width * 1.5f, LOST.height * 1.5f));
             bg.getMesh().scaleTextureCoordinates(new Vector2f(4, 2.25f));
             bg.setMaterial(Assets.mat.clone());
             bg.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/Caustic.png"));

@@ -1,6 +1,7 @@
 package com.anmol.games.screen.screens;
 
 import com.anmol.games.Assets;
+import com.anmol.games.Constants;
 import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
@@ -106,7 +107,13 @@ public class StartScreen extends Screen {
         if (!isPressed && name.equals("StartScreen.click") && selectedRect.getUserData("selected") != null) {
             String input = ((Geometry) selectedRect.getUserData("selected")).getUserData("work");
             switch (input) {
-                case play -> switchScreen(screenController.beforePlayScreen);
+                case play -> {
+                    if (Constants.IS_DEVELOPMENT) {
+                        switchScreen(screenController.mainGameScreen);
+                    } else {
+                        switchScreen(screenController.beforePlayScreen);
+                    }
+                }
                 case howToPlay -> switchScreen(screenController.howToPlayScreen);
                 case settings -> switchScreen(screenController.settingsScreen);
                 case aboutCreator -> switchScreen(screenController.aboutCreatorScreen);

@@ -1,0 +1,9 @@
+package com.anmol.games;
+
+import com.jme3.math.Vector3f;
+
+public class DataLoader {
+    public static Data load() {
+        return new Data(new Vector3f(0, 376, 0), 127, 127, 0, 0, 1, new long[6]);
+    }
+}

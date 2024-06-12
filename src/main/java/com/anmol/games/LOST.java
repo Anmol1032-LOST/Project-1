@@ -3,6 +3,7 @@ package com.anmol.games;
 import com.anmol.games.screen.ScreenController;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.state.AppState;
+import com.jme3.bullet.BulletAppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
@@ -15,8 +16,9 @@ import java.util.Objects;
 public class LOST extends SimpleApplication {
     public static float width;
     public static float height;
-    ScreenController screenController;
     public static float t = 0;
+    ScreenController screenController;
+    float emptyFrames = 35;
 
     public LOST() {
         super(new AppState[0]);
@@ -70,14 +72,12 @@ public class LOST extends SimpleApplication {
         app.start();
     }
 
-    float emptyFrames = 35;
-
     @Override
     public void simpleInitApp() {
+        GlobalVariables.bulletAppState = new BulletAppState();
+        stateManager.attach(GlobalVariables.bulletAppState);
         screenController = new ScreenController(this);
-        System.out.println(1);
         Sounds.load(assetManager);
-        System.out.println(2);
     }
 
     @Override
