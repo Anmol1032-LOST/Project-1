@@ -50,7 +50,7 @@ public class Assets {
             textures.put(asset, assetManager.loadTexture(asset));
         }
 
-        for (String asset : new String[]{"Models/LostMap.glb", "Models/LostMapLowLod.glb"}) {
+        for (String asset : new String[]{"Models/LostMap.glb", "Models/LostMapLowLod.glb", "Models/Center.glb", "Models/Orb.glb"}) {
             models.put(asset, assetManager.loadModel(asset));
         }
 

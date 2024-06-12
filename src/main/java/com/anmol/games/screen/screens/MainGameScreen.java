@@ -12,7 +12,7 @@ public class MainGameScreen extends Screen {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        screenController.mapAppState.setEnabled(enabled);
+        screenController.lostMapAppState.setEnabled(enabled);
         screenController.playerAppState.setEnabled(enabled);
         screenController.attackAppState.setEnabled(enabled);
         screenController.gameGui.setEnabled(enabled);

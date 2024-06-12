@@ -1,10 +1,7 @@
 package com.anmol.games.screen;
 
 import com.anmol.games.LOST;
-import com.anmol.games.screen.appstates.AttackAppState;
-import com.anmol.games.screen.appstates.GameGui;
-import com.anmol.games.screen.appstates.MapAppState;
-import com.anmol.games.screen.appstates.PlayerAppState;
+import com.anmol.games.screen.appstates.*;
 import com.anmol.games.screen.screens.*;
 
 public class ScreenController {
@@ -17,7 +14,9 @@ public class ScreenController {
     public final HowToPlayScreen howToPlayScreen = new HowToPlayScreen();
     public final BeforePlayScreen beforePlayScreen = new BeforePlayScreen();
     public final MainGameScreen mainGameScreen = new MainGameScreen();
-    public final MapAppState mapAppState = new MapAppState();
+    public final LostMapAppState lostMapAppState = new LostMapAppState();
+    public final LoopMapAppState loopMapAppState = new LoopMapAppState();
+    public final SwitchToLoopMapAppState switchToLoopMapAppState = new SwitchToLoopMapAppState();
     public final PlayerAppState playerAppState = new PlayerAppState();
     public final AttackAppState attackAppState = new AttackAppState();
     public final GameGui gameGui = new GameGui();
@@ -38,7 +37,9 @@ public class ScreenController {
         howToPlayScreen.simpleUpdate(tpf);
         beforePlayScreen.simpleUpdate(tpf);
         mainGameScreen.simpleUpdate(tpf);
-        mapAppState.simpleUpdate(tpf);
+        lostMapAppState.simpleUpdate(tpf);
+        loopMapAppState.simpleUpdate(tpf);
+        switchToLoopMapAppState.simpleUpdate(tpf);
         playerAppState.simpleUpdate(tpf);
         attackAppState.simpleUpdate(tpf);
         gameGui.simpleUpdate(tpf);
@@ -53,7 +54,9 @@ public class ScreenController {
         howToPlayScreen.init(this);
         beforePlayScreen.init(this);
         mainGameScreen.init(this);
-        mapAppState.init(this);
+        lostMapAppState.init(this);
+        loopMapAppState.init(this);
+        switchToLoopMapAppState.init(this);
         playerAppState.init(this);
         attackAppState.init(this);
         gameGui.init(this);
