@@ -74,6 +74,9 @@ public class LOST extends SimpleApplication {
     @Override
     public void simpleInitApp() {
         screenController = new ScreenController(this);
+        System.out.println(1);
+        Sounds.load(assetManager);
+        System.out.println(2);
     }
 
     @Override

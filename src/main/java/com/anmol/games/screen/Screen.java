@@ -1,6 +1,7 @@
 package com.anmol.games.screen;
 
 import com.anmol.games.LOST;
+import com.anmol.games.Sounds;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.math.FastMath;
@@ -24,6 +25,9 @@ public abstract class Screen implements ActionListener, AnalogListener {
     public void setEnabled(final boolean enabled) {
         this.enabled = enabled;
         if (enabled) {
+            if (Sounds.clickSound != null) {
+                Sounds.clickSound.play();
+            }
             screenController.app.getGuiNode().attachChild(guiNode);
             screenController.app.getRootNode().attachChild(rootNode);
             show();

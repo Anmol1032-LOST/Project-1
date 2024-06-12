@@ -3,6 +3,7 @@ package com.anmol.games.screen.screens;
 import com.anmol.games.Assets;
 import com.anmol.games.GuiUtils;
 import com.anmol.games.LOST;
+import com.anmol.games.Sounds;
 import com.anmol.games.screen.Screen;
 import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapFont;
@@ -90,9 +91,11 @@ public class StartScreen extends Screen {
         intractable.collideWith(ray, collisionResults);
         if (collisionResults.size() > 0) {
             final Geometry g = collisionResults.getCollision(0).getGeometry();
-            selectedRect.setLocalTranslation(g.getLocalTranslation().add(0, 0, 1));
-            selectedRect.setMesh(g.getMesh().clone());
-            selectedRect.setUserData("selected", g);
+            if (selectedRect.getUserData("selected") != g) {
+                selectedRect.setLocalTranslation(g.getLocalTranslation().add(0, 0, 1));
+                selectedRect.setMesh(g.getMesh().clone());
+                selectedRect.setUserData("selected", g);
+            }
         } else {
             selectedRect.setMesh(new Mesh());
             selectedRect.setUserData("selected", null);

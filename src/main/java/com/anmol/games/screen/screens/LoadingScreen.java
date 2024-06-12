@@ -1,9 +1,6 @@
 package com.anmol.games.screen.screens;
 
-import com.anmol.games.Assets;
-import com.anmol.games.Constants;
-import com.anmol.games.GuiUtils;
-import com.anmol.games.LOST;
+import com.anmol.games.*;
 import com.anmol.games.screen.Screen;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
@@ -94,6 +91,7 @@ public class LoadingScreen extends Screen {
     @Override
     protected void show() {
         Thread thread = new Thread(() -> {
+            Sounds.load(screenController.app.getAssetManager());
             Assets.loadAll(screenController.app.getAssetManager());
             screenController.initAll();
         }, "LoadingScreenThread");
@@ -109,12 +107,18 @@ public class LoadingScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
+
+        if (error != null) {
+            throw new RuntimeException(error);
+        }
+
         Vector2f pos = screenController.app.getInputManager().getCursorPosition();
         vector3f.set(FastMath.interpolateLinear(tpf * 10, vector3f.x, pos.x), FastMath.interpolateLinear(tpf * 10, vector3f.y, pos.y), 999);
         selectedBox.setLocalTranslation(vector3f);
         GuiUtils.updateScreen(cornerNode, t);
 
         if (c >= 1) {
+            Sounds.initSound.play();
             switchScreen(screenController.startScreen);
             return;
         }
