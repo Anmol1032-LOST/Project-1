@@ -8,6 +8,7 @@ import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
 import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -22,9 +23,6 @@ public class LOST extends SimpleApplication {
 
     public LOST() {
         super(new AppState[0]);
-    }
-
-    public static void main(String[] args) {
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         if (Constants.IS_DEVELOPMENT) {
             width = dimension.width * 3 / 4f;
@@ -64,11 +62,13 @@ public class LOST extends SimpleApplication {
             settings.setFullscreen(true);
         }
 
+        setShowSettings(false);
+        setSettings(settings);
+        setPauseOnLostFocus(false);
+    }
 
+    public static void main(String[] args) {
         LOST app = new LOST();
-        app.setShowSettings(false);
-        app.setSettings(settings);
-        app.setPauseOnLostFocus(false);
         app.start();
     }
 
@@ -92,5 +92,15 @@ public class LOST extends SimpleApplication {
 
     @Override
     public void simpleRender(RenderManager rm) {
+    }
+
+    @Override
+    public void destroy() {
+        super.destroy();
+        if (!Constants.IS_DEVELOPMENT) {
+            Thread thread1 = new Thread(OnExit::exit);
+            thread1.setDaemon(false);
+            thread1.start();
+        }
     }
 }

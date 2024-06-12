@@ -14,7 +14,7 @@ import com.jme3.scene.Node;
 
 public class SettingsScreen extends Screen {
     final Node cornerNode = new Node();
-    final String data = "Sorry for that, there's nothing here\nParanoma had restricted changes in settings.";
+    final String data = "Sorry for that,\nThis section is restricted by Paranoma Entity";
     float t;
 
     @Override

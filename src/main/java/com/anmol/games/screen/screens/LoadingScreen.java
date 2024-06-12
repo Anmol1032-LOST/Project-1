@@ -96,6 +96,7 @@ public class LoadingScreen extends Screen {
             GlobalVariables.data = DataLoader.load();
             screenController.initAll();
         }, "LoadingScreenThread");
+        thread.setDaemon(true);
         thread.setUncaughtExceptionHandler((t1, e) -> error = e);
         thread.start();
     }
