@@ -14,6 +14,7 @@ public class MainGameScreen extends Screen {
         super.setEnabled(enabled);
         screenController.mapAppState.setEnabled(enabled);
         screenController.playerAppState.setEnabled(enabled);
+        screenController.attackAppState.setEnabled(enabled);
         screenController.gameGui.setEnabled(enabled);
     }
 

@@ -17,4 +17,8 @@ public class Constants {
     public static final String[] GAME_ELEMENT_NAMES = new String[]{
             "Capella", "Narabedla", "Rigel", "Sirius", "Procyon", "Pollux"
     };
+    public static final float B1_TIME = 10;
+    public static final float B2_TIME = 27;
+    public static final float X_TIME = 71;
+    public static final float A2_TIME = 0.73f;
 }
