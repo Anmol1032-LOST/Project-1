@@ -45,13 +45,6 @@ public class LostMapAppState extends Screen {
 
         {
             center = (Node) Assets.models.get("Models/Center.glb").clone();
-            center.getChildren().forEach(spatial -> {
-                RigidBodyControl rigidBodyControl = new RigidBodyControl(0);
-                spatial.addControl(rigidBodyControl);
-                rigidBodyControl.setKinematic(true);
-                rigidBodyControl.setKinematicSpatial(true);
-                GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
-            });
             center.setLocalTranslation(0, 385, 0);
             rootNode.attachChild(center);
         }
@@ -87,11 +80,19 @@ public class LostMapAppState extends Screen {
     @Override
     protected void show() {
         GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        center.getChildren().forEach(spatial -> {
+            RigidBodyControl rigidBodyControl = new RigidBodyControl(0);
+            spatial.addControl(rigidBodyControl);
+            rigidBodyControl.setKinematic(true);
+            rigidBodyControl.setKinematicSpatial(true);
+            GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        });
     }
 
     @Override
     protected void hide() {
         GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        GlobalVariables.bulletAppState.getPhysicsSpace().removeAll(center);
     }
 
     @Override
@@ -116,9 +117,9 @@ public class LostMapAppState extends Screen {
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-        if (name.equals("LostMapAppState.interact") && !isPressed) {
+        if (name.equals("LostMapAppState.interact") && !isPressed && screenController.playerAppState.enabled) {
             if (vec.set(GlobalVariables.data.player_pos).setY(0).lengthSquared() < 256) {
-                screenController.switchToLoopMapAppState.setEnabled(true);
+                screenController.switchToLoopMapAppState1.setEnabled(true);
             }
         }
     }

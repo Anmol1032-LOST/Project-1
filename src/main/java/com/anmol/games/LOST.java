@@ -88,7 +88,9 @@ public class LOST extends SimpleApplication {
             emptyFrames -= 1;
             return;
         }
-        screenController.update(tpf);
+        if (GlobalVariables.bulletAppState.isInitialized() && GlobalVariables.bulletAppState.getPhysicsSpace() != null && GlobalVariables.bulletAppState.getPhysicsSpace().getDynamicsWorld() != null) {
+            screenController.update(tpf);
+        }
     }
 
     @Override

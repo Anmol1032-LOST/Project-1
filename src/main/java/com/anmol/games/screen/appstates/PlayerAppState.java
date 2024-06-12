@@ -32,9 +32,6 @@ public class PlayerAppState extends Screen {
     boolean sprint = false;
     PointLight pl;
 
-    public PlayerAppState() {
-    }
-
     public static void teleport(Vector3f pos) {
         toTeleport = pos;
     }
@@ -83,8 +80,7 @@ public class PlayerAppState extends Screen {
     protected void analog(String name, float value, float tpf) {
 
     }
-
-
+    Spatial playerSpatial;
     @Override
     protected void init() {
         player = new CharacterControl(new CapsuleCollisionShape(radius, height), 0.07f);
@@ -93,7 +89,7 @@ public class PlayerAppState extends Screen {
         player.setJumpSpeed(15);
         player.setEnabled(false);
 
-        Spatial playerSpatial = new Node("Player");
+         playerSpatial = new Node("Player");
         playerSpatial.setMaterial(Assets.mat.clone());
         playerSpatial.addControl(player);
         rootNode.attachChild(playerSpatial);

@@ -72,7 +72,7 @@ public class OnExit {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jButton2.getParent().remove(jButton2);
-                label.setText("<html><center>Currently I don't have privileges but<br/>...<br/>I can destroy that Button<br/>What you do Now.</center></html>");
+                label.setText("<html><center>Currently I don't have privileges but<br/>...<br/>I can destroy that Button<br/>What you will do Now.</center></html>");
             }
         });
 

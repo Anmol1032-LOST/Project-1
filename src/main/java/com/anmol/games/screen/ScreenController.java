@@ -16,7 +16,8 @@ public class ScreenController {
     public final MainGameScreen mainGameScreen = new MainGameScreen();
     public final LostMapAppState lostMapAppState = new LostMapAppState();
     public final LoopMapAppState loopMapAppState = new LoopMapAppState();
-    public final SwitchToLoopMapAppState switchToLoopMapAppState = new SwitchToLoopMapAppState();
+    public final SwitchToLoopMapAppState1 switchToLoopMapAppState1 = new SwitchToLoopMapAppState1();
+    public final SwitchToLoopMapAppState2 switchToLoopMapAppState2 = new SwitchToLoopMapAppState2();
     public final PlayerAppState playerAppState = new PlayerAppState();
     public final AttackAppState attackAppState = new AttackAppState();
     public final GameGui gameGui = new GameGui();
@@ -39,12 +40,15 @@ public class ScreenController {
         mainGameScreen.simpleUpdate(tpf);
         lostMapAppState.simpleUpdate(tpf);
         loopMapAppState.simpleUpdate(tpf);
-        switchToLoopMapAppState.simpleUpdate(tpf);
+        switchToLoopMapAppState1.simpleUpdate(tpf);
+        switchToLoopMapAppState2.simpleUpdate(tpf);
         playerAppState.simpleUpdate(tpf);
         attackAppState.simpleUpdate(tpf);
         gameGui.simpleUpdate(tpf);
 
-        isAllLoaded = startScreen.loaded;
+
+        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded &&
+                switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded;
     }
 
     public void initAll() {
@@ -56,7 +60,8 @@ public class ScreenController {
         mainGameScreen.init(this);
         lostMapAppState.init(this);
         loopMapAppState.init(this);
-        switchToLoopMapAppState.init(this);
+        switchToLoopMapAppState1.init(this);
+        switchToLoopMapAppState2.init(this);
         playerAppState.init(this);
         attackAppState.init(this);
         gameGui.init(this);

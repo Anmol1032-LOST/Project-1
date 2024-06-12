@@ -18,7 +18,6 @@ public class LoopMapAppState extends Screen {
 
     @Override
     protected void show() {
-
     }
 
     @Override
