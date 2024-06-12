@@ -33,7 +33,7 @@ public class Assets {
     }
 
     public static void loadAll(AssetManager assetManager) {
-        for (String asset : new String[]{"Interface/Text/Anmol.png", "Interface/Text/Lost.png", "Interface/Text/Lost-Full.png", "Textures/CrossHair.png", "Textures/Screen0/Play.png", "Textures/Screen0/Purchase.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Elements.png"}) {
+        for (String asset : new String[]{"Interface/Text/Anmol.png", "Interface/Text/Lost.png", "Interface/Text/Lost-Full.png", "Textures/CrossHair.png", "Textures/Screen0/Play.png", "Textures/Screen0/Purchase.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Elements.png", "Interface/Icon/Icon4096.png"}) {
             Texture texture = assetManager.loadTexture(asset);
             texture.setWrap(Texture.WrapMode.Repeat);
             textures.put(asset, texture);

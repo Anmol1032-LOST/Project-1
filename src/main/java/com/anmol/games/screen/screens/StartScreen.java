@@ -106,9 +106,7 @@ public class StartScreen extends Screen {
         if (!isPressed && name.equals("StartScreen.click") && selectedRect.getUserData("selected") != null) {
             String input = ((Geometry) selectedRect.getUserData("selected")).getUserData("work");
             switch (input) {
-                case play -> {
-                    // todo
-                }
+                case play -> switchScreen(screenController.beforePlayScreen);
                 case howToPlay -> switchScreen(screenController.howToPlayScreen);
                 case settings -> switchScreen(screenController.settingsScreen);
                 case aboutCreator -> switchScreen(screenController.aboutCreatorScreen);

@@ -14,7 +14,7 @@ import com.jme3.scene.Node;
 
 public class AboutCreatorScreen extends Screen {
     final Node cornerNode = new Node();
-    final String data = "Hi! So finally someone Click on it.\nMy name is Anmol and...\nthat's what you...\ncan find about me here\n\nThis is just a game that I created and...\nThere's Nothing Special Here.";
+    final String data = "Hi! So finally someone Click on it.\nMy name is Anmol and...\nthat's what you...\ncan find about me here.\n\nThis is just a game that I created and...\nThere's Nothing Special Here.";
     @Override
     protected void init() {
         screenController.app.getInputManager().addMapping("AboutCreatorScreen.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));

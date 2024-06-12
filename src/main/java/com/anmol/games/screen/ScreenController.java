@@ -11,6 +11,7 @@ public class ScreenController {
     public final AboutCreatorScreen aboutCreatorScreen = new AboutCreatorScreen();
     public final SettingsScreen settingsScreen = new SettingsScreen();
     public final HowToPlayScreen howToPlayScreen = new HowToPlayScreen();
+    public final BeforePlayScreen beforePlayScreen = new BeforePlayScreen();
     public boolean isAllLoaded = false;
 
     public ScreenController(LOST app) {
@@ -26,6 +27,7 @@ public class ScreenController {
         aboutCreatorScreen.simpleUpdate(tpf);
         settingsScreen.simpleUpdate(tpf);
         howToPlayScreen.simpleUpdate(tpf);
+        beforePlayScreen.simpleUpdate(tpf);
 
         isAllLoaded = startScreen.loaded;
     }
@@ -35,5 +37,6 @@ public class ScreenController {
         aboutCreatorScreen.init(this);
         settingsScreen.init(this);
         howToPlayScreen.init(this);
+        beforePlayScreen.init(this);
     }
 }

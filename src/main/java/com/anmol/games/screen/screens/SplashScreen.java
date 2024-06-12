@@ -5,6 +5,7 @@ import com.anmol.games.Constants;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
 import com.jme3.material.Material;
+import com.jme3.material.RenderState;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.shape.CenterQuad;
 
@@ -17,6 +18,7 @@ public class SplashScreen extends Screen {
         Geometry geometry = new Geometry("", new CenterQuad(LOST.height - 16, LOST.height - 16));
         geometry.setMaterial(new Material(screenController.app.getAssetManager(), "Common/MatDefs/Misc/Unshaded.j3md"));
         geometry.getMaterial().setTexture("ColorMap", screenController.app.getAssetManager().loadTexture("Interface/Icon/Icon4096.png"));
+        geometry.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
         geometry.setLocalTranslation(LOST.width / 2, LOST.height / 2, 0);
         guiNode.attachChild(geometry);
     }
