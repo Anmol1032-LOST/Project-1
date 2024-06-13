@@ -56,9 +56,9 @@ public class EntityAppState extends Screen {
 
     @Override
     public void update(float tpf) {
-        if (!GlobalVariables.lostMap) {
-            rootNode.attachChild(entityNode_);
-            rootNode.detachChild(entityNode);
+        if (GlobalVariables.lostMap) {
+            rootNode.attachChild(entityNode);
+            rootNode.detachChild(entityNode_);
 
             entities.forEach(abstractEntity -> abstractEntity.update(tpf));
             entities.removeIf(abstractEntity -> !abstractEntity.isAlive);
@@ -67,8 +67,8 @@ public class EntityAppState extends Screen {
             entities_.clear();
             tmpEntities_.clear();
         } else {
-            rootNode.detachChild(entityNode_);
-            rootNode.attachChild(entityNode);
+            rootNode.attachChild(entityNode_);
+            rootNode.detachChild(entityNode);
 
             entities_.forEach(abstractEntity -> abstractEntity.update(tpf));
             entities_.removeIf(abstractEntity -> !abstractEntity.isAlive);

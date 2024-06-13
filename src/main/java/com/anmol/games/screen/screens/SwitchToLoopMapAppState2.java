@@ -134,8 +134,9 @@ public class SwitchToLoopMapAppState2 extends Screen {
             if (selectedRect.getUserData("selected") != null) {
                 int phase = ((Geometry) selectedRect.getUserData("selected")).getUserData("phase");
                 screenController.loopMapAppState.set(phase, element);
-                switchScreen(screenController.loopMapAppState);
+                switchScreen(screenController.mainGameGuiScreen);
                 screenController.lostMapAppState.setEnabled(false);
+                screenController.loopMapAppState.setEnabled(true);
             } else {
                 switchScreen(screenController.switchToLoopMapAppState1);
             }
