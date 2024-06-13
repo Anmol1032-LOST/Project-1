@@ -56,7 +56,7 @@ public class LostMapAppState extends Screen {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 64; j++) {
                     if ((GlobalVariables.data.story_orbs[i] & 1L << j) == 0) {
-                        float r = rand.nextFloat(128, 16 * SCALE);
+                        float r = rand.nextFloat(SCALE, 16 * SCALE);
                         float a = rand.nextFloat(FastMath.TWO_PI);
                         float x = FastMath.sin(a) * r;
                         float z = FastMath.cos(a) * r;
@@ -92,7 +92,7 @@ public class LostMapAppState extends Screen {
 
     @Override
     protected void hide() {
-        GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        GlobalVariables.bulletAppState.getPhysicsSpace().remove(rigidBodyControl);
         GlobalVariables.bulletAppState.getPhysicsSpace().removeAll(center);
     }
 

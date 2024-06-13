@@ -16,7 +16,7 @@ import com.jme3.scene.Spatial;
 
 
 public class PlayerAppState extends Screen {
-    static Vector3f toTeleport;
+    Vector3f toTeleport;
     static float gravity = 29.400002F;
     final float radius = 0.5f;
     final float height = 10.5f;
@@ -33,7 +33,7 @@ public class PlayerAppState extends Screen {
     PointLight pl;
     Spatial playerSpatial;
 
-    public static void teleport(Vector3f pos) {
+    public void teleport(Vector3f pos) {
         toTeleport = pos;
     }
 

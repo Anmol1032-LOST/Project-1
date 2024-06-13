@@ -4,7 +4,7 @@ import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
 import com.jme3.bullet.control.RigidBodyControl;
-import com.jme3.scene.Geometry;
+import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
 
 public class LoopMapAppState extends Screen {
@@ -37,15 +37,17 @@ public class LoopMapAppState extends Screen {
         else if ((phase) % 32 == 16) map = maps[4];
         else if ((phase) % 64 == 32) map = maps[5];
 
+        screenController.playerAppState.teleport(new Vector3f(0, 10, 0));
         RigidBodyControl r = new RigidBodyControl(0);
         map.addControl(r);
         GlobalVariables.bulletAppState.getPhysicsSpace().add(r);
-        guiNode.attachChild(map);
+        rootNode.attachChild(map);
     }
 
     @Override
     protected void hide() {
-        guiNode.detachAllChildren();
+        GlobalVariables.bulletAppState.getPhysicsSpace().removeAll(rootNode);
+        rootNode.detachAllChildren();
     }
 
     @Override

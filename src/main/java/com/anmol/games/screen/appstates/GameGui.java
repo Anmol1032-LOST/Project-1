@@ -202,7 +202,7 @@ public class GameGui extends Screen {
         stamina.setMesh(new CenterQuad(LOST.width / 3 * GlobalVariables.data.player_stamina, size * 2 / 3));
         elementalStamina.setMesh(new CenterQuad(LOST.width / 3 * GlobalVariables.data.player_elementalStamina, size / 3));
 
-        element.getMaterial().setTexture("ColorMap", textures[GlobalVariables.element]); // todo
+        element.getMaterial().setTexture("ColorMap", textures[GlobalVariables.element]);
 
         bitmapText.setText(loopText);
         info.setText("");
