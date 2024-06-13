@@ -1,12 +1,9 @@
 package com.anmol.games.screen;
 
-import com.anmol.games.GlobalVariables;
 import com.anmol.games.Sounds;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;
 import com.jme3.scene.Node;
-
-import java.util.logging.Logger;
 
 public abstract class Screen implements ActionListener, AnalogListener {
     protected final Node rootNode = new Node();
@@ -14,7 +11,7 @@ public abstract class Screen implements ActionListener, AnalogListener {
     public boolean loaded = false;
     public boolean enabled = false;
     protected ScreenController screenController;
-    private boolean justSwiched = false;
+    private boolean justSwitched = false;
 
     public void init(ScreenController screenController) {
         this.screenController = screenController;
@@ -42,7 +39,7 @@ public abstract class Screen implements ActionListener, AnalogListener {
             hide();
             System.out.println("Hide: " + getClass().getName());
         }
-        justSwiched = true;
+        justSwitched = true;
     }
 
     protected abstract void show();
@@ -53,20 +50,20 @@ public abstract class Screen implements ActionListener, AnalogListener {
     public abstract void update(final float tpf);
 
     public void simpleUpdate(final float tpf) {
-        if (enabled && loaded && !justSwiched) update(Math.min(tpf, 1 / 35f));
-        justSwiched = false;
+        if (enabled && loaded && !justSwitched) update(Math.min(tpf, 1 / 35f));
+        justSwitched = false;
     }
 
     @Override
     public void onAction(final String name, final boolean isPressed, final float tpf) {
-        if (enabled && loaded && !justSwiched) action(name, isPressed, tpf);
+        if (enabled && loaded && !justSwitched) action(name, isPressed, tpf);
     }
 
     protected abstract void action(final String name, final boolean isPressed, final float tpf);
 
     @Override
     public void onAnalog(final String name, final float value, final float tpf) {
-        if (enabled && loaded && !justSwiched) analog(name, value, tpf);
+        if (enabled && loaded && !justSwitched) analog(name, value, tpf);
     }
 
     protected abstract void analog(final String name, final float value, final float tpf);

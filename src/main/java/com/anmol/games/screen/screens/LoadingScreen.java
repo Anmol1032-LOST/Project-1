@@ -94,7 +94,7 @@ public class LoadingScreen extends Screen {
             guiNode.attachChild(memoryBar_);
 
             memoryText = new BitmapText(Assets.font.get("Font"));
-            memoryText.setColor(ColorRGBA.Black);
+            memoryText.setColor(new ColorRGBA(0.2f, 0.2f, 0.2f, 1));
             memoryText.setSize(memoryText.getFont().getCharSet().getRenderedSize() / 3f);
             memoryText.setBox(new Rectangle(LOST.width / 2 - LOST.width * 3 / 4 * 3 / 4 / 2, LOST.height*7/ 8 - 64 - 16, LOST.width * 3 / 4 * 3 / 4, 32));
             memoryText.setAlignment(BitmapFont.Align.Center);
@@ -128,6 +128,12 @@ public class LoadingScreen extends Screen {
             Assets.loadAll(screenController.app.getAssetManager());
             GlobalVariables.data = DataLoader.load();
             screenController.initAll();
+            System.gc();
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }, "LoadingScreenThread");
         thread.setDaemon(true);
         thread.setUncaughtExceptionHandler((t1, e) -> error = e);

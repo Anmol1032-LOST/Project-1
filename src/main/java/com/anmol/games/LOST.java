@@ -69,12 +69,19 @@ public class LOST extends SimpleApplication {
     }
 
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler(OnError::error);
         LOST app = new LOST();
         app.start();
     }
 
     @Override
     public void simpleInitApp() {
+        Thread.UncaughtExceptionHandler c = Thread.currentThread().getUncaughtExceptionHandler();
+        Thread.currentThread().setUncaughtExceptionHandler((t1, e) -> {
+            c.uncaughtException(t1, e);
+            OnError.error(t1, e);
+            destroy();
+        });
         GlobalVariables.bulletAppState = new BulletAppState();
         stateManager.attach(GlobalVariables.bulletAppState);
         screenController = new ScreenController(this);
