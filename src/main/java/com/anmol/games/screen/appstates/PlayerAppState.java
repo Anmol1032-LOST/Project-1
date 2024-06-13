@@ -16,7 +16,6 @@ import com.jme3.scene.Spatial;
 
 
 public class PlayerAppState extends Screen {
-    Vector3f toTeleport;
     static float gravity = 29.400002F;
     final float radius = 0.5f;
     final float height = 10.5f;
@@ -25,6 +24,7 @@ public class PlayerAppState extends Screen {
     final private Vector3f leftDir = new Vector3f(0, 0, 0);
     public CharacterControl player;
     public ChaseCamera chaseCamera;
+    Vector3f toTeleport;
     boolean left = false;
     boolean right = false;
     boolean forward = false;

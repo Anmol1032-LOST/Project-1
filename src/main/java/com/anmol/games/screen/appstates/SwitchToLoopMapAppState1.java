@@ -1,6 +1,9 @@
 package com.anmol.games.screen.appstates;
 
-import com.anmol.games.*;
+import com.anmol.games.Assets;
+import com.anmol.games.GlobalVariables;
+import com.anmol.games.GuiUtils;
+import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.MouseInput;
@@ -19,6 +22,10 @@ public class SwitchToLoopMapAppState1 extends Screen {
     Node cornerNode = new Node();
     Node intractable = new Node();
     Geometry selectedBox;
+    Vector3f vec1 = new Vector3f();
+    Vector3f vec2 = new Vector3f(0, 0, -1);
+    Vector3f pos = new Vector3f();
+
     @Override
     protected void init() {
         screenController.app.getInputManager().addMapping("SwitchToLoopMapAppState1.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
@@ -44,7 +51,7 @@ public class SwitchToLoopMapAppState1 extends Screen {
             mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
             Geometry g = new Geometry("", new CenterQuad(104, 104));
             g.setMaterial(mat);
-            g.setLocalTranslation(LOST.width/2 + FastMath.sin(i/6f*FastMath.TWO_PI)*256,  LOST.height/2 + FastMath.cos(i/6f*FastMath.TWO_PI)*256, 1);
+            g.setLocalTranslation(LOST.width / 2 + FastMath.sin(i / 6f * FastMath.TWO_PI) * 256, LOST.height / 2 + FastMath.cos(i / 6f * FastMath.TWO_PI) * 256, 1);
             g.setUserData("element", i);
             intractable.attachChild(g);
         }
@@ -66,8 +73,6 @@ public class SwitchToLoopMapAppState1 extends Screen {
 
     }
 
-    Vector3f vec1 = new Vector3f();
-    Vector3f vec2 = new Vector3f(0, 0, -1);
     @Override
     public void update(float tpf) {
         GuiUtils.updateScreen(cornerNode);
@@ -91,8 +96,6 @@ public class SwitchToLoopMapAppState1 extends Screen {
             setEnabled(false);
         }
     }
-
-    Vector3f pos = new Vector3f();
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {

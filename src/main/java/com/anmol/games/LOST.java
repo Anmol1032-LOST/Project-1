@@ -3,13 +3,11 @@ package com.anmol.games;
 import com.anmol.games.screen.ScreenController;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
-import com.jme3.app.state.AppState;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;

@@ -30,6 +30,7 @@ public class LoopMapAppState extends Screen {
 
     @Override
     protected void show() {
+        GlobalVariables.lostMap = false;
         if (phase % 2 == 1) map = maps[0];
         else if ((phase) % 4 == 2) map = maps[1];
         else if ((phase) % 8 == 4) map = maps[2];

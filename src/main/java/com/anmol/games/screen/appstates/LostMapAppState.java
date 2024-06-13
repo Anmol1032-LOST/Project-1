@@ -17,7 +17,6 @@ import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
-import java.util.Optional;
 import java.util.Random;
 
 public class LostMapAppState extends Screen {
@@ -80,6 +79,7 @@ public class LostMapAppState extends Screen {
 
     @Override
     protected void show() {
+        GlobalVariables.lostMap = true;
         GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
         center.getChildren().forEach(spatial -> {
             RigidBodyControl rigidBodyControl = new RigidBodyControl(0);

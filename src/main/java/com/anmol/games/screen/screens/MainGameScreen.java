@@ -16,6 +16,7 @@ public class MainGameScreen extends Screen {
         screenController.playerAppState.setEnabled(enabled);
         screenController.attackAppState.setEnabled(enabled);
         screenController.gameGui.setEnabled(enabled);
+        screenController.entityAppState.setEnabled(enabled);
     }
 
     @Override

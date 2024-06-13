@@ -26,6 +26,7 @@ public class SwitchToLoopMapAppState2 extends Screen {
     int element;
     Vector3f vec1 = new Vector3f();
     Vector3f vec2 = new Vector3f(0, 0, -1);
+    Vector3f pos = new Vector3f();
 
     @Override
     protected void init() {
@@ -54,13 +55,12 @@ public class SwitchToLoopMapAppState2 extends Screen {
         screenController.playerAppState.setChaseCameraEnabled(!enabled);
     }
 
-    Vector3f pos = new Vector3f();
     @Override
     protected void show() {
         pos.set(GlobalVariables.data.player_pos);
         for (int i = 0; i < 8; i++) {
             for (int o = 0; o < 8; o++) {
-                int n = (7-o)*8+i + 1;
+                int n = (7 - o) * 8 + i + 1;
                 float width = LOST.width * 3 / 4 / 8 - 8;
                 float height = LOST.height * 3 / 4 / 8 - 8;
                 float x = LOST.width / 8 + i * LOST.width * 3 / 4 / 8 + (LOST.width * 3 / 4 / 8 - 1) / 2 + 1;

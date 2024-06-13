@@ -6,4 +6,5 @@ public class GlobalVariables {
     public static Data data;
     public static BulletAppState bulletAppState;
     public static int element = 0;
+    public static boolean lostMap = true;
 }

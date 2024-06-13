@@ -2,6 +2,7 @@ package com.anmol.games.screen;
 
 import com.anmol.games.LOST;
 import com.anmol.games.screen.appstates.*;
+import com.anmol.games.screen.appstates.entity.EntityAppState;
 import com.anmol.games.screen.screens.*;
 
 public class ScreenController {
@@ -21,6 +22,7 @@ public class ScreenController {
     public final PlayerAppState playerAppState = new PlayerAppState();
     public final AttackAppState attackAppState = new AttackAppState();
     public final GameGui gameGui = new GameGui();
+    public final EntityAppState entityAppState = new EntityAppState();
     public boolean isAllLoaded = false;
 
     public ScreenController(LOST app) {
@@ -45,10 +47,11 @@ public class ScreenController {
         playerAppState.simpleUpdate(tpf);
         attackAppState.simpleUpdate(tpf);
         gameGui.simpleUpdate(tpf);
+        entityAppState.simpleUpdate(tpf);
 
 
         isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded &&
-                switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded;
+                switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded;
     }
 
     public void initAll() {
@@ -65,5 +68,6 @@ public class ScreenController {
         playerAppState.init(this);
         attackAppState.init(this);
         gameGui.init(this);
+        entityAppState.init(this);
     }
 }

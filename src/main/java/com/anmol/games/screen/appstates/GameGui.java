@@ -5,18 +5,20 @@ import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
+import com.anmol.games.screen.appstates.entity.AbstractEntity;
+import com.anmol.games.screen.appstates.entity.EntityAppState;
+import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
 import com.jme3.font.Rectangle;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
 import com.jme3.math.ColorRGBA;
 import com.jme3.math.FastMath;
-import com.jme3.math.Vector3f;
+import com.jme3.math.Ray;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
+import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.CenterQuad;
 import com.jme3.scene.shape.Quad;
 import com.jme3.texture.Texture;
@@ -209,19 +211,19 @@ public class GameGui extends Screen {
         entityHp.setMesh(new Mesh());
         guiNode.detachChild(entityHp_);
 
-        // todo
-//        CollisionResults collisionResults = new CollisionResults();
-//        Ray ray = new Ray(screenController.app.getCamera().getLocation(), screenController.app.getCamera().getDirection());
-//        screenController.app.getRootNode().collideWith(ray, collisionResults);
-//        if (collisionResults.size() >= 1) {
-//            Spatial s = collisionResults.getClosestCollision().getGeometry();
-//            AbstractEntity e = EntityAppState.getEntity(s);
-//            if (e != null) {
-//                info.setText(e.getName() + "  LV-" + e.level);
-//                entityHp.setMesh(new CenterQuad(LOST.width / 2.7f * e.hp / e.maxHp, size / 1.5f));
-//                guiNode.attachChild(entityHp_);
-//            }
-//        }
+
+        CollisionResults collisionResults = new CollisionResults();
+        Ray ray = new Ray(screenController.app.getCamera().getLocation(), screenController.app.getCamera().getDirection());
+        screenController.app.getRootNode().collideWith(ray, collisionResults);
+        if (collisionResults.size() >= 1) {
+            Spatial s = collisionResults.getClosestCollision().getGeometry();
+            AbstractEntity e = EntityAppState.getEntity(s);
+            if (e != null) {
+                info.setText(e.getName() + "  LV-" + e.level);
+                entityHp.setMesh(new CenterQuad(LOST.width / 2.7f * e.hp / e.maxHp, size / 1.5f));
+                guiNode.attachChild(entityHp_);
+            }
+        }
 
         b1CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B1Time[GlobalVariables.element] / Constants.B1_TIME));
         b2CD.setMesh(new Quad(size, LOST.height / 3 * GlobalVariables.data.player_B2Time[GlobalVariables.element] / Constants.B2_TIME));

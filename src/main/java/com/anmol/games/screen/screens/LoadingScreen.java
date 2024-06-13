@@ -26,6 +26,10 @@ public class LoadingScreen extends Screen {
     Throwable error;
     float c;
     float t = 0;
+    Geometry memoryBar;
+    Geometry memoryBar2;
+    Geometry memoryBar_;
+    BitmapText memoryText;
 
     @Override
     protected void init() {
@@ -78,13 +82,13 @@ public class LoadingScreen extends Screen {
         {
             memoryBar = new Geometry("", new Mesh());
             memoryBar.setMaterial(Assets.mat.clone());
-            memoryBar.setLocalTranslation(LOST.width / 2, LOST.height*7/8 - 64, 2);
+            memoryBar.setLocalTranslation(LOST.width / 2, LOST.height * 7 / 8 - 64, 2);
             guiNode.attachChild(memoryBar);
 
             memoryBar2 = new Geometry("", new Mesh());
             memoryBar2.setMaterial(Assets.mat.clone());
             memoryBar2.getMaterial().setColor("Color", ColorRGBA.Gray);
-            memoryBar2.setLocalTranslation(LOST.width / 2, LOST.height*7/8 - 64, 1);
+            memoryBar2.setLocalTranslation(LOST.width / 2, LOST.height * 7 / 8 - 64, 1);
             guiNode.attachChild(memoryBar2);
 
             memoryBar_ = new Geometry("", new CenterQuad(LOST.width * 3 / 4 * 3 / 4, 32));
@@ -96,7 +100,7 @@ public class LoadingScreen extends Screen {
             memoryText = new BitmapText(Assets.font.get("Font"));
             memoryText.setColor(new ColorRGBA(0.2f, 0.2f, 0.2f, 1));
             memoryText.setSize(memoryText.getFont().getCharSet().getRenderedSize() / 3f);
-            memoryText.setBox(new Rectangle(LOST.width / 2 - LOST.width * 3 / 4 * 3 / 4 / 2, LOST.height*7/ 8 - 64 - 16, LOST.width * 3 / 4 * 3 / 4, 32));
+            memoryText.setBox(new Rectangle(LOST.width / 2 - LOST.width * 3 / 4 * 3 / 4 / 2, LOST.height * 7 / 8 - 64 - 16, LOST.width * 3 / 4 * 3 / 4, 32));
             memoryText.setAlignment(BitmapFont.Align.Center);
             memoryText.setVerticalAlignment(BitmapFont.VAlign.Center);
             memoryText.setLocalTranslation(0, memoryText.getHeight(), 3);
@@ -115,11 +119,6 @@ public class LoadingScreen extends Screen {
             guiNode.attachChild(text);
         }
     }
-    
-    Geometry memoryBar;
-    Geometry memoryBar2;
-    Geometry memoryBar_;
-    BitmapText memoryText;
 
     @Override
     protected void show() {
@@ -179,9 +178,9 @@ public class LoadingScreen extends Screen {
         long total = Runtime.getRuntime().totalMemory();
         long used = total - Runtime.getRuntime().freeMemory();
 
-        memoryText.setText((used/1024/1024) + "M.B./" + (total/1024/1024) + "M.B");
-        memoryBar.setMesh(new CenterQuad(LOST.width * 3 / 4 * 3 / 4 * ((float) used/max), 32)); // remember memoryBar_
-        memoryBar2.setMesh(new CenterQuad(LOST.width * 3 / 4 * 3 / 4 * ((float) total/max), 32)); // remember memoryBar_
+        memoryText.setText((used / 1024 / 1024) + "M.B./" + (total / 1024 / 1024) + "M.B.");
+        memoryBar.setMesh(new CenterQuad(LOST.width * 3 / 4 * 3 / 4 * ((float) used / max), 32)); // remember memoryBar_
+        memoryBar2.setMesh(new CenterQuad(LOST.width * 3 / 4 * 3 / 4 * ((float) total / max), 32)); // remember memoryBar_
     }
 
     @Override
