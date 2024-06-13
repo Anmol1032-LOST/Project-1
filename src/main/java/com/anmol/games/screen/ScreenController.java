@@ -29,6 +29,8 @@ public class ScreenController {
     public final Element element = new Element();
     public final Inventory inventory = new Inventory();
     public final Purchase purchase = new Purchase();
+    public final Crafting crafting = new Crafting();
+    public final Entities entities = new Entities();
 
     public final MainGameGuiScreen mainGameGuiScreen = new MainGameGuiScreen();
     public boolean isAllLoaded = false;
@@ -61,11 +63,13 @@ public class ScreenController {
         element.simpleUpdate(tpf);
         inventory.simpleUpdate(tpf);
         purchase.simpleUpdate(tpf);
+        crafting.simpleUpdate(tpf);
+        entities.simpleUpdate(tpf);
 
         mainGameGuiScreen.simpleUpdate(tpf);
 
 
-        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded;
+        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded;
         ;
     }
 
@@ -89,6 +93,8 @@ public class ScreenController {
         element.init(this);
         inventory.init(this);
         purchase.init(this);
+        crafting.init(this);
+        entities.init(this);
 
         mainGameGuiScreen.init(this);
     }
