@@ -1,5 +1,6 @@
 package com.anmol.games.screen;
 
+import com.anmol.games.GlobalVariables;
 import com.anmol.games.Sounds;
 import com.jme3.input.controls.ActionListener;
 import com.jme3.input.controls.AnalogListener;

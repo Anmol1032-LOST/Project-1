@@ -90,7 +90,6 @@ public class SwitchToLoopMapAppState1 extends Screen {
         if (!pos.isSimilar(GlobalVariables.data.player_pos, 0.1f)) {
             setEnabled(false);
         }
-        pos.set(GlobalVariables.data.player_pos);
     }
 
     Vector3f pos = new Vector3f();

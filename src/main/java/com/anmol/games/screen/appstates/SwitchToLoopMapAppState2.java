@@ -54,10 +54,10 @@ public class SwitchToLoopMapAppState2 extends Screen {
         screenController.playerAppState.setChaseCameraEnabled(!enabled);
     }
 
-    Vector3f pos;
+    Vector3f pos = new Vector3f();
     @Override
     protected void show() {
-        pos = GlobalVariables.data.player_pos;
+        pos.set(GlobalVariables.data.player_pos);
         for (int i = 0; i < 8; i++) {
             for (int o = 0; o < 8; o++) {
                 int n = (7-o)*8+i + 1;
@@ -125,7 +125,6 @@ public class SwitchToLoopMapAppState2 extends Screen {
         if (!pos.isSimilar(GlobalVariables.data.player_pos, 0.1f)) {
             setEnabled(false);
         }
-        pos.set(GlobalVariables.data.player_pos);
     }
 
     @Override
