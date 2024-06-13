@@ -1,6 +1,8 @@
 package com.anmol.games.screen.screens;
 
 import com.anmol.games.screen.Screen;
+import com.anmol.games.screen.appstates.entity.entities.Slime;
+import com.jme3.math.Vector3f;
 
 public class MainGameScreen extends Screen {
     float t = 0;
@@ -22,6 +24,7 @@ public class MainGameScreen extends Screen {
     @Override
     protected void show() {
         t = 0;
+        screenController.entityAppState.spawn(new Slime(new Vector3f(0, 376, 0), 1, 1));
     }
 
     @Override

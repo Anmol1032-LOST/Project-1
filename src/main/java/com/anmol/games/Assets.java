@@ -56,7 +56,9 @@ public class Assets {
             textures.put(asset, assetManager.loadTexture(asset));
         }
 
-        for (String asset : new String[]{"Models/LostMap.glb", "Models/LostMapLowLod.glb", "Models/Center.glb", "Models/Orb.glb", "Models/LoopMap1.glb", "Models/LoopMap2.glb", "Models/LoopMap3.glb", "Models/LoopMap4.glb", "Models/LoopMap5.glb", "Models/LoopMap6.glb"}) {
+        for (String asset : new String[]{"Models/LostMap.glb", "Models/LostMapLowLod.glb", "Models/Center.glb", "Models/Orb.glb", "Models/LoopMap1.glb", "Models/LoopMap2.glb", "Models/LoopMap3.glb", "Models/LoopMap4.glb", "Models/LoopMap5.glb", "Models/LoopMap6.glb",
+                "Models/Entities/Slime.glb"
+        }) {
             models.put(asset, assetManager.loadModel(asset));
         }
 
