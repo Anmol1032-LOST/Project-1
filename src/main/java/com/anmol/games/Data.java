@@ -18,8 +18,9 @@ public class Data implements Serializable {
     public float[] player_B2Time;
     public float[] player_XTime;
     public ArrayList<AbstractEntity> entities;
+    public long[][] inventory;
 
-    public Data(Vector3f player_pos, long player_hp, long player_maxHp, float player_stamina, float player_elementalStamina, long story_phase, long[] story_orbs, float[] player_B1Time, float[] player_B2Time, float[] player_XTime, ArrayList<AbstractEntity> entities) {
+    public Data(Vector3f player_pos, long player_hp, long player_maxHp, float player_stamina, float player_elementalStamina, long story_phase, long[] story_orbs, float[] player_B1Time, float[] player_B2Time, float[] player_XTime, ArrayList<AbstractEntity> entities, long[][] inventory) {
         this.player_pos = player_pos;
         this.player_hp = player_hp;
         this.player_maxHp = player_maxHp;
@@ -31,5 +32,6 @@ public class Data implements Serializable {
         this.player_B2Time = player_B2Time;
         this.player_XTime = player_XTime;
         this.entities = entities;
+        this.inventory = inventory;
     }
 }

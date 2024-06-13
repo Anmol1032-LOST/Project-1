@@ -6,6 +6,6 @@ import java.util.ArrayList;
 
 public class DataLoader {
     public static Data load() {
-        return new Data(new Vector3f(0, 376, 0), 127, 127, 0, 0, 1, new long[6], new float[6], new float[6], new float[6], new ArrayList<>());
+        return new Data(new Vector3f(0, 376, 0), 127, 127, 0, 0, 1, new long[6], new float[6], new float[6], new float[6], new ArrayList<>(), new long[6][4]);
     }
 }
