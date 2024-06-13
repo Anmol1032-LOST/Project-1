@@ -1,4 +1,4 @@
-package com.anmol.games.screen.appstates;
+package com.anmol.games.screen.screens;
 
 import com.anmol.games.*;
 import com.anmol.games.screen.Screen;
@@ -123,7 +123,8 @@ public class SwitchToLoopMapAppState2 extends Screen {
         }
 
         if (!pos.isSimilar(GlobalVariables.data.player_pos, 0.1f)) {
-            setEnabled(false);
+            switchScreen(screenController.mainGameGuiScreen);
+
         }
     }
 

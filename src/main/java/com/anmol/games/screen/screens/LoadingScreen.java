@@ -128,10 +128,12 @@ public class LoadingScreen extends Screen {
             GlobalVariables.data = DataLoader.load();
             screenController.initAll();
             System.gc();
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            if (!Constants.IS_DEVELOPMENT) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }, "LoadingScreenThread");
         thread.setDaemon(true);

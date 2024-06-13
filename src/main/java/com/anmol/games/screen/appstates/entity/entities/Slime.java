@@ -2,7 +2,6 @@ package com.anmol.games.screen.appstates.entity.entities;
 
 import com.anmol.games.Assets;
 import com.anmol.games.Constants;
-import com.anmol.games.LOST;
 import com.anmol.games.screen.appstates.entity.AbstractEntity;
 import com.jme3.anim.AnimComposer;
 import com.jme3.math.Vector3f;

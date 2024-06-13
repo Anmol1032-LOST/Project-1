@@ -26,13 +26,11 @@ public class LostMapAppState extends Screen {
 
     Node center;
     float t = 0;
-    Vector3f vec = new Vector3f();
+
 
     @Override
     protected void init() {
         rootNode.attachChild(orbNode);
-        screenController.app.getInputManager().addMapping("LostMapAppState.interact", new KeyTrigger(KeyInput.KEY_G));
-        screenController.app.getInputManager().addListener(this, "LostMapAppState.interact");
 
         Spatial map = Assets.models.get("Models/LostMap.glb").clone();
         map.scale(SCALE);
@@ -118,11 +116,6 @@ public class LostMapAppState extends Screen {
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-        if (name.equals("LostMapAppState.interact") && !isPressed && screenController.playerAppState.enabled) {
-            if (vec.set(GlobalVariables.data.player_pos).setY(0).lengthSquared() < 256 && !(screenController.switchToLoopMapAppState1.enabled) && !screenController.switchToLoopMapAppState2.enabled) {
-                screenController.switchToLoopMapAppState1.setEnabled(true);
-            }
-        }
     }
 
     @Override

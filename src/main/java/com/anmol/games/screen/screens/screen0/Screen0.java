@@ -1,4 +1,4 @@
-package com.anmol.games.screen.appstates;
+package com.anmol.games.screen.screens.screen0;
 
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
@@ -18,7 +18,7 @@ import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
 import com.jme3.scene.shape.CenterQuad;
 
-public class SwitchToLoopMapAppState1 extends Screen {
+public class Screen0 extends Screen {
     Node cornerNode = new Node();
     Node intractable = new Node();
     Geometry selectedBox;
@@ -28,8 +28,8 @@ public class SwitchToLoopMapAppState1 extends Screen {
 
     @Override
     protected void init() {
-        screenController.app.getInputManager().addMapping("SwitchToLoopMapAppState1.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-        screenController.app.getInputManager().addListener(this, "SwitchToLoopMapAppState1.click");
+        screenController.app.getInputManager().addMapping("Screen0.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        screenController.app.getInputManager().addListener(this, "Screen0.click");
 
         guiNode.attachChild(cornerNode);
         guiNode.attachChild(intractable);
@@ -45,14 +45,15 @@ public class SwitchToLoopMapAppState1 extends Screen {
             guiNode.attachChild(selectedBox);
         }
 
-        for (int i = 0; i < 6; i++) {
+        String[] texture = {"Textures/Screen0/Elements.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Purchase.png"};
+        for (int i = 0; i < 3; i++) {
             Material mat = Assets.mat.clone();
-            mat.setTexture("ColorMap", Assets.textures.get("Textures/Elements/C" + i + ".png"));
+            mat.setTexture("ColorMap", Assets.textures.get(texture[i]));
             mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
             Geometry g = new Geometry("", new CenterQuad(104, 104));
             g.setMaterial(mat);
-            g.setLocalTranslation(LOST.width / 2 + FastMath.sin(i / 6f * FastMath.TWO_PI) * 256, LOST.height / 2 + FastMath.cos(i / 6f * FastMath.TWO_PI) * 256, 1);
-            g.setUserData("element", i);
+            g.setLocalTranslation(LOST.width / 2 + FastMath.sin(i / 3f * FastMath.TWO_PI) * 256, LOST.height / 2 + FastMath.cos(i / 3f * FastMath.TWO_PI) * 256, 1);
+            g.setUserData("action", i);
             intractable.attachChild(g);
         }
     }
@@ -66,11 +67,11 @@ public class SwitchToLoopMapAppState1 extends Screen {
     @Override
     protected void show() {
         pos.set(GlobalVariables.data.player_pos);
+        onSomeScreen = false;
     }
 
     @Override
     protected void hide() {
-
     }
 
     @Override
@@ -93,21 +94,32 @@ public class SwitchToLoopMapAppState1 extends Screen {
         }
 
         if (!pos.isSimilar(GlobalVariables.data.player_pos, 0.1f)) {
-            setEnabled(false);
+            switchScreen(screenController.mainGameGuiScreen);
+
         }
     }
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-        if (!isPressed && name.equals("SwitchToLoopMapAppState1.click")) {
+        if (!isPressed && name.equals("Screen0.click")) {
             if (selectedBox.getUserData("selected") != null) {
-                screenController.switchToLoopMapAppState2.element = ((Geometry) selectedBox.getUserData("selected")).getUserData("element");
-                switchScreen(screenController.switchToLoopMapAppState2);
+                Screen s;
+                int i = ((Geometry) selectedBox.getUserData("selected")).getUserData("action");
+                switch (i) {
+                    case 0 -> s = screenController.element;
+                    case 1 -> s = screenController.inventory;
+                    case 2 -> s = screenController.purchase;
+                    default -> throw new RuntimeException("Unknown action provided in Screen0");
+                }
+                onSomeScreen = true;
+                switchScreen(s);
             } else {
-                setEnabled(false);
+                switchScreen(screenController.mainGameGuiScreen);
             }
         }
     }
+
+    public boolean onSomeScreen = false;
 
     @Override
     protected void analog(String name, float value, float tpf) {

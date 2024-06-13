@@ -74,6 +74,11 @@ public class LOST extends SimpleApplication {
 
     @Override
     public void simpleInitApp() {
+        inputManager.deleteMapping(INPUT_MAPPING_MEMORY);
+        inputManager.deleteMapping(INPUT_MAPPING_CAMERA_POS);
+        inputManager.deleteMapping(INPUT_MAPPING_HIDE_STATS);
+        inputManager.deleteMapping(INPUT_MAPPING_EXIT);
+
         Thread.UncaughtExceptionHandler c = Thread.currentThread().getUncaughtExceptionHandler();
         Thread.currentThread().setUncaughtExceptionHandler((t1, e) -> {
             c.uncaughtException(t1, e);
