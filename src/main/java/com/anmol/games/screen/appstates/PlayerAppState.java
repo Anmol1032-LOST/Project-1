@@ -31,6 +31,7 @@ public class PlayerAppState extends Screen {
     boolean backward = false;
     boolean sprint = false;
     PointLight pl;
+    Spatial playerSpatial;
 
     public static void teleport(Vector3f pos) {
         toTeleport = pos;
@@ -46,6 +47,11 @@ public class PlayerAppState extends Screen {
         forward = false;
         backward = false;
         sprint = false;
+        screenController.app.getInputManager().setCursorVisible(!enabled);
+    }
+
+    public void setChaseCameraEnabled(boolean enabled) {
+        chaseCamera.setDragToRotate(!enabled);
         screenController.app.getInputManager().setCursorVisible(!enabled);
     }
 
@@ -80,7 +86,7 @@ public class PlayerAppState extends Screen {
     protected void analog(String name, float value, float tpf) {
 
     }
-    Spatial playerSpatial;
+
     @Override
     protected void init() {
         player = new CharacterControl(new CapsuleCollisionShape(radius, height), 0.07f);
@@ -89,7 +95,7 @@ public class PlayerAppState extends Screen {
         player.setJumpSpeed(15);
         player.setEnabled(false);
 
-         playerSpatial = new Node("Player");
+        playerSpatial = new Node("Player");
         playerSpatial.setMaterial(Assets.mat.clone());
         playerSpatial.addControl(player);
         rootNode.attachChild(playerSpatial);
@@ -102,6 +108,7 @@ public class PlayerAppState extends Screen {
         chaseCamera.setDragToRotate(false);
         chaseCamera.setInvertVerticalAxis(true);
         chaseCamera.setLookAtOffset(new Vector3f(0, height / 2, 0));
+        chaseCamera.setEnabled(false);
         setupKeys();
 
         screenController.app.getInputManager().setCursorVisible(true);

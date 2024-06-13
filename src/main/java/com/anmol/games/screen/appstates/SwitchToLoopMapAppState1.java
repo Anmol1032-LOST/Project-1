@@ -1,9 +1,6 @@
 package com.anmol.games.screen.appstates;
 
-import com.anmol.games.Assets;
-import com.anmol.games.Constants;
-import com.anmol.games.GuiUtils;
-import com.anmol.games.LOST;
+import com.anmol.games.*;
 import com.anmol.games.screen.Screen;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.MouseInput;
@@ -56,12 +53,12 @@ public class SwitchToLoopMapAppState1 extends Screen {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        screenController.playerAppState.setEnabled(!enabled);
+        screenController.playerAppState.setChaseCameraEnabled(!enabled);
     }
 
     @Override
     protected void show() {
-
+        pos.set(GlobalVariables.data.player_pos);
     }
 
     @Override
@@ -89,7 +86,14 @@ public class SwitchToLoopMapAppState1 extends Screen {
             selectedBox.setMesh(new Mesh());
             selectedBox.setUserData("selected", null);
         }
+
+        if (!pos.isSimilar(GlobalVariables.data.player_pos, 0.1f)) {
+            setEnabled(false);
+        }
+        pos.set(GlobalVariables.data.player_pos);
     }
+
+    Vector3f pos = new Vector3f();
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {

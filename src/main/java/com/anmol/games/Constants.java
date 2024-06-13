@@ -3,7 +3,7 @@ package com.anmol.games;
 import com.jme3.math.ColorRGBA;
 
 public class Constants {
-    public static final boolean IS_DEVELOPMENT = false;
+    public static final boolean IS_DEVELOPMENT = true;
     public static final String GAME_NAME = "L.O.S.T.";
     public static final String GAME_NAME_FULL = "Luminosity of Stygian Transcendent";
     public static final ColorRGBA[] GAME_COLORS = new ColorRGBA[]{
