@@ -1,6 +1,7 @@
 package com.anmol.games;
 
 import com.jme3.math.ColorRGBA;
+import com.jme3.math.Vector3f;
 
 public class Constants {
     public static final boolean IS_DEVELOPMENT = true;
@@ -21,4 +22,5 @@ public class Constants {
     public static final float B2_TIME = 27;
     public static final float X_TIME = 71;
     public static final float A2_TIME = 0.73f;
+    public static final Vector3f PLAYER_POS = new Vector3f(0, 376, 0);
 }

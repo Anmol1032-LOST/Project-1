@@ -20,6 +20,7 @@ public class ScreenController {
     public final LoopMapAppState loopMapAppState = new LoopMapAppState();
     public final SwitchToLoopMapAppState1 switchToLoopMapAppState1 = new SwitchToLoopMapAppState1();
     public final SwitchToLoopMapAppState2 switchToLoopMapAppState2 = new SwitchToLoopMapAppState2();
+    public final SwitchToLostMapAppState1 switchToLostMapAppState1 = new SwitchToLostMapAppState1();
     public final PlayerAppState playerAppState = new PlayerAppState();
     public final AttackAppState attackAppState = new AttackAppState();
     public final GameGui gameGui = new GameGui();
@@ -54,6 +55,7 @@ public class ScreenController {
         loopMapAppState.simpleUpdate(tpf);
         switchToLoopMapAppState1.simpleUpdate(tpf);
         switchToLoopMapAppState2.simpleUpdate(tpf);
+        switchToLostMapAppState1.simpleUpdate(tpf);
         playerAppState.simpleUpdate(tpf);
         attackAppState.simpleUpdate(tpf);
         gameGui.simpleUpdate(tpf);
@@ -69,7 +71,7 @@ public class ScreenController {
         mainGameGuiScreen.simpleUpdate(tpf);
 
 
-        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded;
+        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded && switchToLostMapAppState1.loaded;
     }
 
     public void initAll() {
@@ -83,6 +85,7 @@ public class ScreenController {
         loopMapAppState.init(this);
         switchToLoopMapAppState1.init(this);
         switchToLoopMapAppState2.init(this);
+        switchToLostMapAppState1.init(this);
         playerAppState.init(this);
         attackAppState.init(this);
         gameGui.init(this);

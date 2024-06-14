@@ -31,7 +31,9 @@ public class MainGameGuiScreen extends Screen {
 
     @Override
     public void update(float tpf) {
-
+        if (screenController.playerAppState.enabled && !GlobalVariables.lostMap && screenController.entityAppState.entities_.isEmpty() && screenController.entityAppState.tmpEntities_.isEmpty()) {
+            switchScreen(screenController.switchToLostMapAppState1);
+        }
     }
 
     @Override

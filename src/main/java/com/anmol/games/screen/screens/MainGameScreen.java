@@ -27,7 +27,6 @@ public class MainGameScreen extends Screen {
     @Override
     protected void show() {
         t = 0;
-        screenController.entityAppState.spawn(new Slime(new Vector3f(0, 376, 0), 1, 1));
     }
 
     @Override
