@@ -3,9 +3,6 @@ package com.anmol.games.screen.appstates;
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
-import com.anmol.games.screen.appstates.entity.entities.Forst;
-import com.anmol.games.screen.appstates.entity.entities.Freee;
-import com.anmol.games.screen.appstates.entity.entities.Slime;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -23,12 +20,12 @@ public class LoopMapAppState extends Screen {
 
     @Override
     protected void init() {
-        maps[0] = Assets.models.get("Models/LoopMap1.glb");
-        maps[1] = Assets.models.get("Models/LoopMap2.glb");
-        maps[2] = Assets.models.get("Models/LoopMap3.glb");
-        maps[3] = Assets.models.get("Models/LoopMap4.glb");
-        maps[4] = Assets.models.get("Models/LoopMap5.glb");
-        maps[5] = Assets.models.get("Models/LoopMap6.glb");
+        maps[0] = Assets.models.get("Models/Map/LoopMap1.glb");
+        maps[1] = Assets.models.get("Models/Map/LoopMap2.glb");
+        maps[2] = Assets.models.get("Models/Map/LoopMap3.glb");
+        maps[3] = Assets.models.get("Models/Map/LoopMap4.glb");
+        maps[4] = Assets.models.get("Models/Map/LoopMap5.glb");
+        maps[5] = Assets.models.get("Models/Map/LoopMap6.glb");
     }
 
     @Override
@@ -85,16 +82,12 @@ public class LoopMapAppState extends Screen {
 //                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 1, 64), 1, 3));
 //                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 64), 1, 4));
 //                screenController.entityAppState.spawn(new Slime(new Vector3f(-72, 1, 64), 1, 5));
-//
-
-                screenController.entityAppState.spawn(new Forst(new Vector3f(0, 1, 64), 1, 5));
             }
         }
     }
 
     private void spawnEntity(int phase, int element) {
         switch (phase) {
-            case 1 -> screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, element));
         }
     }
 }

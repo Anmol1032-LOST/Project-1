@@ -5,6 +5,7 @@ import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.Sounds;
 import com.anmol.games.screen.Screen;
+import com.jme3.anim.AnimComposer;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResults;
@@ -21,37 +22,37 @@ public class LostMapAppState extends Screen {
     public final float SCALE = 128;
     RigidBodyControl rigidBodyControl;
     Node orbNode = new Node();
-
     Node center;
     float t = 0;
-
+    Node surrounding;
+    RigidBodyControl rigidBodyControl2;
 
     @Override
     protected void init() {
         rootNode.attachChild(orbNode);
 
-        Spatial map = Assets.models.get("Models/LostMap.glb").clone();
+        Spatial map = Assets.models.get("Models/Map/LostMap.glb").clone();
         map.scale(SCALE);
         rootNode.attachChild(map);
 
-        Spatial lowLodMap = Assets.models.get("Models/LostMapLowLod.glb").clone();
+        Spatial lowLodMap = Assets.models.get("Models/Map/LostMapLowLod.glb").clone();
         lowLodMap.scale(SCALE);
         rigidBodyControl = new RigidBodyControl(CollisionShapeFactory.createMeshShape(lowLodMap), 0);
         map.addControl(rigidBodyControl);
 
         {
-            center = (Node) Assets.models.get("Models/Center.glb").clone();
+            center = (Node) Assets.models.get("Models/Map/Center.glb").clone();
             center.setLocalTranslation(0, 385, 0);
             rootNode.attachChild(center);
         }
 
         {
             Random rand = new Random(123);
-            Spatial s_ = Assets.models.get("Models/Orb.glb").clone();
+            Spatial s_ = Assets.models.get("Models/Map/Orb.glb").clone();
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 64; j++) {
                     if ((GlobalVariables.data.story_orbs[i] & 1L << j) == 0) {
-                        float r = rand.nextFloat(SCALE, 16 * SCALE);
+                        float r = rand.nextFloat(2 * SCALE, 16 * SCALE);
                         float a = rand.nextFloat(FastMath.TWO_PI);
                         float x = FastMath.sin(a) * r;
                         float z = FastMath.cos(a) * r;
@@ -71,13 +72,41 @@ public class LostMapAppState extends Screen {
                 }
             }
         }
+
+        {
+            surrounding = (Node) Assets.models.get("Models/Map/Surrounding.glb");
+            surrounding.setLocalTranslation(center.getLocalTranslation());
+            startAnimation(surrounding);
+            rootNode.attachChild(surrounding);
+        }
+    }
+
+    private void startAnimation(Spatial s) {
+        if (s instanceof Node) {
+            for (int i = 0; i < ((Node) s).getChildren().size(); i++) {
+                startAnimation(((Node) s).getChild(i));
+            }
+        } else {
+            AnimComposer a = s.getControl(AnimComposer.class);
+            if (a != null) {
+                a.setCurrentAction((String) a.getAnimClipsNames().toArray()[0]);
+            }
+        }
     }
 
     @Override
     protected void show() {
         GlobalVariables.lostMap = true;
         GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl2);
         center.getChildren().forEach(spatial -> {
+            RigidBodyControl rigidBodyControl = new RigidBodyControl(0);
+            spatial.addControl(rigidBodyControl);
+            rigidBodyControl.setKinematic(true);
+            rigidBodyControl.setKinematicSpatial(true);
+            GlobalVariables.bulletAppState.getPhysicsSpace().add(rigidBodyControl);
+        });
+        surrounding.getChildren().forEach(spatial -> {
             RigidBodyControl rigidBodyControl = new RigidBodyControl(0);
             spatial.addControl(rigidBodyControl);
             rigidBodyControl.setKinematic(true);
