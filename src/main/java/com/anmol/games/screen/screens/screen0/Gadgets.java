@@ -3,23 +3,18 @@ package com.anmol.games.screen.screens.screen0;
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.GuiUtils;
-import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
 import com.jme3.collision.CollisionResults;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.MouseButtonTrigger;
-import com.jme3.material.Material;
 import com.jme3.material.RenderState;
-import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
-import com.jme3.scene.shape.CenterQuad;
 
-public class Screen0 extends Screen {
-    public boolean onSomeScreen = false;
+public class Gadgets extends Screen {
     Node cornerNode = new Node();
     Node intractable = new Node();
     Geometry selectedBox;
@@ -29,8 +24,8 @@ public class Screen0 extends Screen {
 
     @Override
     protected void init() {
-        screenController.app.getInputManager().addMapping("Screen0.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
-        screenController.app.getInputManager().addListener(this, "Screen0.click");
+        screenController.app.getInputManager().addMapping("Gadgets.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        screenController.app.getInputManager().addListener(this, "Gadgets.click");
 
         guiNode.attachChild(cornerNode);
         guiNode.attachChild(intractable);
@@ -46,17 +41,7 @@ public class Screen0 extends Screen {
             guiNode.attachChild(selectedBox);
         }
 
-        String[] texture = {"Textures/Screen0/Elements.png", "Textures/Screen0/Inventory.png", "Textures/Screen0/Purchase.png", null, null, null};
-        for (int i = 0; i < 6; i++) {
-            Material mat = Assets.mat.clone();
-            mat.setTexture("ColorMap", Assets.textures.get(texture[i]));
-            mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
-            Geometry g = new Geometry("", new CenterQuad(104, 104));
-            g.setMaterial(mat);
-            g.setLocalTranslation(LOST.width / 2 + FastMath.sin(i / 6f * FastMath.TWO_PI) * 256, LOST.height / 2 + FastMath.cos(i / 6f * FastMath.TWO_PI) * 256, 1);
-            g.setUserData("action", i);
-            intractable.attachChild(g);
-        }
+        // todo
     }
 
     @Override
@@ -68,7 +53,6 @@ public class Screen0 extends Screen {
     @Override
     protected void show() {
         pos.set(GlobalVariables.data.player_pos);
-        onSomeScreen = false;
     }
 
     @Override
@@ -102,23 +86,11 @@ public class Screen0 extends Screen {
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-        if (!isPressed && name.equals("Screen0.click")) {
+        if (!isPressed && name.equals("Gadgets.click")) {
             if (selectedBox.getUserData("selected") != null) {
-                Screen s;
-                int i = ((Geometry) selectedBox.getUserData("selected")).getUserData("action");
-                switch (i) {
-                    case 0 -> s = screenController.element;
-                    case 1 -> s = screenController.inventory;
-                    case 2 -> s = screenController.purchase;
-                    case 3 -> s = screenController.crafting;
-                    case 4 -> s = screenController.entities;
-                    case 5 -> s = screenController.gadgets;
-                    default -> throw new RuntimeException("Unknown action provided in Screen0");
-                }
-                onSomeScreen = true;
-                switchScreen(s);
+                // todo
             } else {
-                switchScreen(screenController.mainGameGuiScreen);
+                switchScreen(screenController.screen0);
             }
         }
     }
