@@ -1,17 +1,32 @@
 package com.anmol.games.screen.appstates;
 
+import com.anmol.games.Assets;
 import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
+import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
+import com.anmol.games.screen.appstates.entity.AbstractEntity;
+import com.anmol.games.screen.appstates.entity.EntityAppState;
+import com.jme3.collision.CollisionResults;
 import com.jme3.input.KeyInput;
 import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
+import com.jme3.math.FastMath;
+import com.jme3.math.Ray;
+import com.jme3.math.Vector3f;
+import com.jme3.scene.Geometry;
+import com.jme3.scene.Node;
+import com.jme3.scene.Spatial;
+import com.jme3.scene.shape.CenterQuad;
+import com.jme3.scene.shape.Line;
 
 public class AttackAppState extends Screen {
-    boolean A2 = false;
+    boolean isA2 = false;
     float A2Timer = 0;
+
+    Geometry A1;
 
 
     @Override
@@ -38,7 +53,7 @@ public class AttackAppState extends Screen {
 
     @Override
     public void update(float tpf) {
-        if (A2) {
+        if (isA2) {
             A2Timer += tpf;
         }
         GlobalVariables.data.player_B1Time[GlobalVariables.element] += tpf;
@@ -78,7 +93,7 @@ public class AttackAppState extends Screen {
                 if (!isPressed && A2Timer > Constants.A2_TIME) {
                     A2();
                 }
-                A2 = isPressed;
+                isA2 = isPressed;
                 A2Timer = 0;
             }
             case "B1" -> {
@@ -127,6 +142,34 @@ public class AttackAppState extends Screen {
     }
 
     private void A1() {
+        CollisionResults collisionResults = new CollisionResults();
+        Ray ray = new Ray(screenController.app.getCamera().getLocation(), screenController.app.getCamera().getDirection());
+        screenController.app.getRootNode().collideWith(ray, collisionResults);
+        if (collisionResults.size() >= 1 && collisionResults.getClosestCollision().getDistance() < 32) {
+            Spatial s = collisionResults.getClosestCollision().getGeometry();
+            AbstractEntity e = EntityAppState.getEntity(s);
+            if (e != null) {
+                if (GlobalVariables.element == e.element) {
+                    e.damage(1);
+                } else if ((GlobalVariables.element + 2) % 6 == e.element) {
+                    e.damage(4);
+                } else {
+                    e.damage(2);
+                }
+
+                GlobalVariables.data.player_elementalStamina += 0.07f;
+
+                if (A1 != null) {
+                    rootNode.detachChild(A1);
+                }
+                A1 = new Geometry("", new Line(screenController.app.getCamera().getLocation().add(FastMath.rand.nextFloat(-1, 1), FastMath.rand.nextFloat(-1, 1), FastMath.rand.nextFloat(-1, 1)), e.spatial.getLocalTranslation()));
+                A1.setMaterial(Assets.mat.clone());
+                A1.getMaterial().getAdditionalRenderState().setWireframe(true);
+                A1.getMaterial().setColor("Color", Constants.GAME_COLORS[GlobalVariables.element]);
+                A1.setUserData("time", 0.3f);
+                rootNode.attachChild(A1);
+            }
+        }
     }
 
     private void A2() {
@@ -142,5 +185,14 @@ public class AttackAppState extends Screen {
     }
 
     private void elementalUpdate(float tpf) {
+        if (A1 != null) {
+            float time = A1.getUserData("time");
+            if (time > 0) {
+                A1.setUserData("time", time-tpf);
+            } else {
+                rootNode.detachChild(A1);
+                A1 = null;
+            }
+        }
     }
 }

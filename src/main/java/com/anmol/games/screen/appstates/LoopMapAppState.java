@@ -78,17 +78,19 @@ public class LoopMapAppState extends Screen {
     private void spawnEntity(int phase) {
         switch (phase) {
             case 1 -> {
-                screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, 0));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 0), 1, 1));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, -64), 1, 2));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 0), 1, 3));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 64), 1, 4));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, -64), 1, 5));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(72, 1, 64), 1, 0));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 64), 1, 1));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 1, 64), 1, 2));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 1, 64), 1, 3));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 64), 1, 4));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(72, 1, 64), 1, 5));
             }
         }
     }
 
     private void spawnEntity(int phase, int element) {
-
+        switch (phase) {
+          case 1 -> screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, element));
+        }
     }
 }
