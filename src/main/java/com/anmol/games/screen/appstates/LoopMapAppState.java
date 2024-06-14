@@ -3,6 +3,7 @@ package com.anmol.games.screen.appstates;
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
+import com.anmol.games.screen.appstates.entity.entities.Slime;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -43,7 +44,15 @@ public class LoopMapAppState extends Screen {
         map.addControl(r);
         GlobalVariables.bulletAppState.getPhysicsSpace().add(r);
         rootNode.attachChild(map);
+
+        if (element < 6) {
+            spawnEntity(phase, element);
+        } else {
+            spawnEntity(phase);
+        }
     }
+
+
 
     @Override
     protected void hide() {
@@ -63,6 +72,23 @@ public class LoopMapAppState extends Screen {
 
     @Override
     protected void analog(String name, float value, float tpf) {
+
+    }
+
+    private void spawnEntity(int phase) {
+        switch (phase) {
+            case 1 -> {
+                screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, 0));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 0), 1, 1));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, -64), 1, 2));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 0), 1, 3));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 64), 1, 4));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, -64), 1, 5));
+            }
+        }
+    }
+
+    private void spawnEntity(int phase, int element) {
 
     }
 }

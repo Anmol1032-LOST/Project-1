@@ -33,7 +33,7 @@ public class MainGameGuiScreen extends Screen {
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-        if (name.equals("MainGameGuiScreen.interact") && !isPressed && screenController.playerAppState.enabled) {
+        if (name.equals("MainGameGuiScreen.interact") && !isPressed && screenController.playerAppState.enabled && GlobalVariables.lostMap) {
             if (vec.set(GlobalVariables.data.player_pos).setY(0).lengthSquared() < 256  && !onScreen) {
                switchScreen(screenController.switchToLoopMapAppState1);
                onScreen = true;

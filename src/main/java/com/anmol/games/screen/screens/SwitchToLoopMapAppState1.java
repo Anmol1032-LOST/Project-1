@@ -55,6 +55,15 @@ public class SwitchToLoopMapAppState1 extends Screen {
             g.setUserData("element", i);
             intractable.attachChild(g);
         }
+
+        Material mat = Assets.mat.clone();
+        mat.setTexture("ColorMap", Assets.textures.get("Textures/GUI/Box.png"));
+        mat.getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+        Geometry g = new Geometry("", new CenterQuad(136, 136));
+        g.setMaterial(mat);
+        g.setLocalTranslation(LOST.width / 2, LOST.height / 2, 1);
+        g.setUserData("element", 6);
+        intractable.attachChild(g);
     }
 
     @Override

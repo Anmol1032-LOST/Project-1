@@ -77,21 +77,40 @@ public class SwitchToLoopMapAppState2 extends Screen {
                 g.setLocalTranslation(x, y, 1);
                 g.setUserData("phase", n);
 
-                if (n <= Long.bitCount(GlobalVariables.data.story_orbs[element])) {
-                    mat.setColor("Color", Constants.GAME_COLORS[element]);
-                    intractable.attachChild(g);
+                if (element != 6) {
+                    if (n <= Long.bitCount(GlobalVariables.data.story_orbs[element])) {
+                        mat.setColor("Color", Constants.GAME_COLORS[element]);
+                        intractable.attachChild(g);
 
-                    BitmapText text = new BitmapText(Assets.font.get("Font"));
-                    text.setText("" + n);
-                    text.setSize(text.getFont().getCharSet().getRenderedSize() / 4f);
-                    text.setBox(new Rectangle(x - width / 2, y - height / 2, width, height));
-                    text.setAlignment(BitmapFont.Align.Center);
-                    text.setVerticalAlignment(BitmapFont.VAlign.Center);
-                    text.setLocalTranslation(0, text.getHeight(), 3);
-                    noIntractable.attachChild(text);
+                        BitmapText text = new BitmapText(Assets.font.get("Font"));
+                        text.setText("" + n);
+                        text.setSize(text.getFont().getCharSet().getRenderedSize() / 4f);
+                        text.setBox(new Rectangle(x - width / 2, y - height / 2, width, height));
+                        text.setAlignment(BitmapFont.Align.Center);
+                        text.setVerticalAlignment(BitmapFont.VAlign.Center);
+                        text.setLocalTranslation(0, text.getHeight(), 3);
+                        noIntractable.attachChild(text);
+                    } else {
+                        mat.setColor("Color", ColorRGBA.Gray);
+                        noIntractable.attachChild(g);
+                    }
                 } else {
-                    mat.setColor("Color", ColorRGBA.Gray);
-                    noIntractable.attachChild(g);
+                    if (n <= Long.bitCount(GlobalVariables.data.story_phase)) {
+                        mat.setColor("Color", ColorRGBA.White);
+                        intractable.attachChild(g);
+
+                        BitmapText text = new BitmapText(Assets.font.get("Font"));
+                        text.setText("" + n);
+                        text.setSize(text.getFont().getCharSet().getRenderedSize() / 4f);
+                        text.setBox(new Rectangle(x - width / 2, y - height / 2, width, height));
+                        text.setAlignment(BitmapFont.Align.Center);
+                        text.setVerticalAlignment(BitmapFont.VAlign.Center);
+                        text.setLocalTranslation(0, text.getHeight(), 3);
+                        noIntractable.attachChild(text);
+                    } else {
+                        mat.setColor("Color", ColorRGBA.Gray);
+                        noIntractable.attachChild(g);
+                    }
                 }
             }
         }

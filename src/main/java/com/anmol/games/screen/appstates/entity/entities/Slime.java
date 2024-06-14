@@ -25,17 +25,23 @@ public class Slime extends AbstractEntity {
 
     @Override
     protected Spatial genrateSpatial() {
-        Node n = ((Node) Assets.models.get("Models/Entities/Slime.glb"));
-        ((Geometry) n.getChild(0)).getMaterial().setColor("Emissive", Constants.GAME_COLORS[element]);
+        Node n = (Node) (Assets.models.get("Models/Entities/Slime.glb")).clone();
+        ((Geometry) n.getChild(0)).getMaterial().setColor("BaseColor", Constants.GAME_COLORS[element]);
         n.getChild(0).getControl(AnimComposer.class).setCurrentAction("MainAnim");
         return n;
     }
 
+    float t=0;
+
     @Override
     protected void update(float tpf) {
-        if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 32)){
-            GlobalVariables.data.player_hp -= level;
-            damage(level);
+        t += tpf;
+        if (t > .3) {
+            t = 0;
+            if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 16)) {
+                GlobalVariables.data.player_hp -= level;
+                damage(level);
+            }
         }
     }
 

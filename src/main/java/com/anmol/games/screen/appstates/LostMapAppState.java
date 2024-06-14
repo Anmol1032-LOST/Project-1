@@ -8,8 +8,6 @@ import com.anmol.games.screen.Screen;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.bullet.util.CollisionShapeFactory;
 import com.jme3.collision.CollisionResults;
-import com.jme3.input.KeyInput;
-import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.math.Vector3f;
@@ -61,7 +59,7 @@ public class LostMapAppState extends Screen {
                         Spatial s = s_.clone();
                         s.setUserData("index", j);
                         s.setUserData("element", i);
-                        ((Geometry) ((Node) s).getChild(0)).getMaterial().setColor("Emissive", Constants.GAME_COLORS[i]);
+                        ((Geometry) ((Node) s).getChild(0)).getMaterial().setColor("BaseColor", Constants.GAME_COLORS[i]);
 
                         CollisionResults collisionResults = new CollisionResults();
                         Ray ray = new Ray(new Vector3f(x, 512, z), Vector3f.UNIT_Y.negate());
