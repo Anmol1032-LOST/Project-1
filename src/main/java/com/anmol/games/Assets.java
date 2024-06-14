@@ -59,7 +59,7 @@ public class Assets {
         }
 
         for (String asset : new String[]{"Models/LostMap.glb", "Models/LostMapLowLod.glb", "Models/Center.glb", "Models/Orb.glb", "Models/LoopMap1.glb", "Models/LoopMap2.glb", "Models/LoopMap3.glb", "Models/LoopMap4.glb", "Models/LoopMap5.glb", "Models/LoopMap6.glb",
-                "Models/Entities/Slime.glb"
+                "Models/Entities/Slime.glb", "Models/Entities/Freee.glb", "Models/Entities/Forst.glb"
         }) {
             models.put(asset, assetManager.loadModel(asset));
         }

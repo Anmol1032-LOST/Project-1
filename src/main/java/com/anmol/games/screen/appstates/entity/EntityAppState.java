@@ -28,6 +28,7 @@ public class EntityAppState extends Screen {
     }
 
     public void spawn(AbstractEntity abstractEntity) {
+        abstractEntity.entityAppState = this;
         if (!GlobalVariables.lostMap) {
             tmpEntities_.add(abstractEntity);
             entityNode_.attachChild(abstractEntity);

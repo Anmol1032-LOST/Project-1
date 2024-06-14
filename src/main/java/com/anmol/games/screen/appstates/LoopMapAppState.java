@@ -3,6 +3,8 @@ package com.anmol.games.screen.appstates;
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
+import com.anmol.games.screen.appstates.entity.entities.Forst;
+import com.anmol.games.screen.appstates.entity.entities.Freee;
 import com.anmol.games.screen.appstates.entity.entities.Slime;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
@@ -77,12 +79,15 @@ public class LoopMapAppState extends Screen {
     private void spawnEntity(int phase) {
         switch (phase) {
             case 1 -> {
-                screenController.entityAppState.spawn(new Slime(new Vector3f(72, 1, 64), 1, 0));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 64), 1, 1));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 1, 64), 1, 2));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 1, 64), 1, 3));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 64), 1, 4));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(72, 1, 64), 1, 5));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(72, 1, 64), 1, 0));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 1, 64), 1, 1));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 1, 64), 1, 2));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 1, 64), 1, 3));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 1, 64), 1, 4));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-72, 1, 64), 1, 5));
+//
+
+                screenController.entityAppState.spawn(new Forst(new Vector3f(0, 1, 64), 1, 5));
             }
         }
     }

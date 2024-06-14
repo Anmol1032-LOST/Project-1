@@ -11,6 +11,7 @@ public abstract class AbstractEntity extends Node {
     public int level;
     public Spatial spatial;
     public boolean isAlive = true;
+    public EntityAppState entityAppState;
 
     public AbstractEntity(Vector3f pos, int level, int element) {
         super();
