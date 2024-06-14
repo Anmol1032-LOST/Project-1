@@ -11,6 +11,8 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 public class Slime extends AbstractEntity {
+    float t = 0;
+
     public Slime(Vector3f pos, int level, int element) {
         super(pos, level, element);
         setName("Slime");
@@ -30,8 +32,6 @@ public class Slime extends AbstractEntity {
         n.getChild(0).getControl(AnimComposer.class).setCurrentAction("MainAnim");
         return n;
     }
-
-    float t=0;
 
     @Override
     protected void update(float tpf) {

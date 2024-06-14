@@ -104,12 +104,13 @@ public class LostMapAppState extends Screen {
             }
         }
         center.getChild(0).rotate(FastMath.sin(t) * tpf, FastMath.sin(2 * t) * tpf, FastMath.sin(3 * tpf) * tpf);
-        center.getChild("T0").rotate(FastMath.sin(t) * tpf, FastMath.sin(t / 2) * tpf, FastMath.cos(t / 3) * tpf);
-        center.getChild("T1").rotate(FastMath.sin(t / 5) * tpf, FastMath.sin(t / 7) * tpf, FastMath.cos(t / 11) * tpf);
-        center.getChild("T2").rotate(FastMath.sin(t * 2) * tpf, FastMath.sin(t) * tpf, FastMath.cos(t * 6) * tpf);
-        center.getChild("T3").rotate(FastMath.sin(t * 9) * tpf, FastMath.sin(t * 4) * tpf, FastMath.cos(t * 9) * tpf);
-        center.getChild("T4").rotate(FastMath.sin(t * 5) * tpf, FastMath.sin(t * 7) * tpf, FastMath.cos(t * 12) * tpf);
-        center.getChild("T5").rotate(FastMath.sin(t / 7) * tpf, FastMath.sin(t * 8) * tpf, FastMath.cos(t * 4) * tpf);
+        center.getChild("Torus.001").rotate(FastMath.sin(t) * tpf, FastMath.sin(t / 2) * tpf, FastMath.cos(t / 3) * tpf);
+        center.getChild("Torus.002").rotate(FastMath.sin(t / 5) * tpf, FastMath.sin(t / 7) * tpf, FastMath.cos(t / 11) * tpf);
+        center.getChild("Torus.003").rotate(FastMath.sin(t * 2) * tpf, FastMath.sin(t) * tpf, FastMath.cos(t * 6) * tpf);
+        center.getChild("Torus.004").rotate(FastMath.sin(t * 9) * tpf, FastMath.sin(t * 4) * tpf, FastMath.cos(t * 9) * tpf);
+        center.getChild("Torus.005").rotate(FastMath.sin(t * 5) * tpf, FastMath.sin(t * 7) * tpf, FastMath.cos(t * 12) * tpf);
+        center.getChild("Torus.006").rotate(FastMath.sin(t / 7) * tpf, FastMath.sin(t * 8) * tpf, FastMath.cos(t * 4) * tpf);
+        center.getChild("Torus").rotate(FastMath.sin(t / 12) * tpf, FastMath.sin(t * 4) * tpf, FastMath.cos(t * 9) * tpf);
     }
 
     @Override

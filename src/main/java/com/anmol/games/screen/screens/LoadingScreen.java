@@ -2,15 +2,15 @@ package com.anmol.games.screen.screens;
 
 import com.anmol.games.*;
 import com.anmol.games.screen.Screen;
+import com.jme3.collision.CollisionResults;
 import com.jme3.font.BitmapFont;
 import com.jme3.font.BitmapText;
 import com.jme3.font.Rectangle;
+import com.jme3.input.MouseInput;
+import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.material.Material;
 import com.jme3.material.RenderState;
-import com.jme3.math.ColorRGBA;
-import com.jme3.math.FastMath;
-import com.jme3.math.Vector2f;
-import com.jme3.math.Vector3f;
+import com.jme3.math.*;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Mesh;
 import com.jme3.scene.Node;
@@ -26,14 +26,23 @@ public class LoadingScreen extends Screen {
     Throwable error;
     float c;
     float t = 0;
+    float t0 = 0;
     Geometry memoryBar;
     Geometry memoryBar2;
     Geometry memoryBar_;
     BitmapText memoryText;
+    Node interactable = new Node();
+    Vector3f vec2 = new Vector3f(0, 0, -1);
+    Vector3f vec1 = new Vector3f();
 
     @Override
     protected void init() {
+        screenController.app.getInputManager().addMapping("LoadingScreen.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));
+        screenController.app.getInputManager().addListener(this, "LoadingScreen.click");
+
+
         guiNode.attachChild(cornerNode);
+        guiNode.attachChild(interactable);
         {
             selectedBox = new Geometry("", new CenterQuad(128, 128));
             selectedBox.setMaterial(Assets.mat.clone());
@@ -149,14 +158,44 @@ public class LoadingScreen extends Screen {
     @Override
     public void update(float tpf) {
         t += tpf;
+        t0 += tpf;
 
         if (error != null) {
             throw new RuntimeException(error);
         }
 
-        Vector2f pos = screenController.app.getInputManager().getCursorPosition();
-        vector3f.set(FastMath.interpolateLinear(tpf * 10, vector3f.x, pos.x), FastMath.interpolateLinear(tpf * 10, vector3f.y, pos.y), 999);
-        selectedBox.setLocalTranslation(vector3f);
+        if (t0 > 3) {
+            t0 = 0;
+            Geometry g = new Geometry("", new CenterQuad(64, 64));
+            g.setMaterial(Assets.mat.clone());
+            g.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/CrossHair.png"));
+            ColorRGBA gameColor = Constants.GAME_COLORS[FastMath.rand.nextInt(6)];
+            g.getMaterial().setColor("Color", gameColor);
+            g.setUserData("color", gameColor);
+            g.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
+            g.setLocalTranslation(FastMath.rand.nextFloat(LOST.width), FastMath.rand.nextFloat(LOST.height), 6);
+            interactable.attachChild(g);
+        }
+
+        final CollisionResults collisionResults = new CollisionResults();
+        vec1.set(screenController.app.getInputManager().getCursorPosition().x, screenController.app.getInputManager().getCursorPosition().y, 1000);
+        final Ray ray = new Ray(vec1, vec2);
+        interactable.collideWith(ray, collisionResults);
+        if (collisionResults.size() > 0) {
+            final Geometry g = collisionResults.getCollision(0).getGeometry();
+            if (selectedBox.getUserData("selected") != g) {
+                selectedBox.setLocalTranslation(g.getLocalTranslation().add(0, 0, 1));
+                vector3f.set(selectedBox.getLocalTranslation());
+                selectedBox.setUserData("selected", g);
+            }
+        } else {
+            selectedBox.setUserData("selected", null);
+
+            Vector2f pos = screenController.app.getInputManager().getCursorPosition();
+            vector3f.set(FastMath.interpolateLinear(tpf * 10, vector3f.x, pos.x), FastMath.interpolateLinear(tpf * 10, vector3f.y, pos.y), 999);
+            selectedBox.setLocalTranslation(vector3f);
+        }
+
         GuiUtils.updateScreen(cornerNode);
 
         if (c >= 1) {
@@ -170,7 +209,7 @@ public class LoadingScreen extends Screen {
             if (Constants.IS_DEVELOPMENT) {
                 c = 1;
             } else {
-                c += tpf / 10;
+                c += tpf / 30;
             }
         }
         loadingText.setText((int) (c * 100) + "%");
@@ -187,7 +226,14 @@ public class LoadingScreen extends Screen {
 
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
-
+        if (!isPressed && name.equals("LoadingScreen.click")) {
+            if (selectedBox.getUserData("selected") != null) {
+                Geometry selected = selectedBox.getUserData("selected");
+                loadingBar.getMaterial().setColor("Color", selected.getUserData("color"));
+                interactable.detachChild(selected);
+                Sounds.clickSound.play();
+            }
+        }
     }
 
     @Override

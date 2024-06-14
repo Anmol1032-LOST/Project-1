@@ -7,6 +7,9 @@ import com.jme3.input.controls.KeyTrigger;
 import com.jme3.math.Vector3f;
 
 public class MainGameGuiScreen extends Screen {
+    boolean onScreen = false;
+    Vector3f vec = new Vector3f();
+
     @Override
     protected void init() {
         screenController.app.getInputManager().addMapping("MainGameGuiScreen.interact", new KeyTrigger(KeyInput.KEY_G));
@@ -34,9 +37,9 @@ public class MainGameGuiScreen extends Screen {
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
         if (name.equals("MainGameGuiScreen.interact") && !isPressed && screenController.playerAppState.enabled && GlobalVariables.lostMap) {
-            if (vec.set(GlobalVariables.data.player_pos).setY(0).lengthSquared() < 256  && !onScreen) {
-               switchScreen(screenController.switchToLoopMapAppState1);
-               onScreen = true;
+            if (vec.set(GlobalVariables.data.player_pos).setY(0).lengthSquared() < 256 && !onScreen) {
+                switchScreen(screenController.switchToLoopMapAppState1);
+                onScreen = true;
             }
         }
 
@@ -45,9 +48,6 @@ public class MainGameGuiScreen extends Screen {
             onScreen = true;
         }
     }
-
-    boolean onScreen = false;
-    Vector3f vec = new Vector3f();
 
     @Override
     protected void analog(String name, float value, float tpf) {

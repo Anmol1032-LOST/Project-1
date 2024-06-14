@@ -19,6 +19,7 @@ import com.jme3.scene.Node;
 import com.jme3.scene.shape.CenterQuad;
 
 public class Screen0 extends Screen {
+    public boolean onSomeScreen = false;
     Node cornerNode = new Node();
     Node intractable = new Node();
     Geometry selectedBox;
@@ -121,8 +122,6 @@ public class Screen0 extends Screen {
             }
         }
     }
-
-    public boolean onSomeScreen = false;
 
     @Override
     protected void analog(String name, float value, float tpf) {

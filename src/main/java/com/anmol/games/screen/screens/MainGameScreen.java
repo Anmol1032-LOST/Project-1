@@ -2,10 +2,6 @@ package com.anmol.games.screen.screens;
 
 import com.anmol.games.screen.Screen;
 import com.anmol.games.screen.appstates.entity.entities.Slime;
-import com.jme3.input.KeyInput;
-import com.jme3.input.MouseInput;
-import com.jme3.input.controls.KeyTrigger;
-import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.Vector3f;
 
 public class MainGameScreen extends Screen {

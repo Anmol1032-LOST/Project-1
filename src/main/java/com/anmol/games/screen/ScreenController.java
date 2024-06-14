@@ -70,7 +70,6 @@ public class ScreenController {
 
 
         isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded;
-        ;
     }
 
     public void initAll() {

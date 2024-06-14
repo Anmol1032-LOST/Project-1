@@ -53,7 +53,6 @@ public class LoopMapAppState extends Screen {
     }
 
 
-
     @Override
     protected void hide() {
         GlobalVariables.bulletAppState.getPhysicsSpace().removeAll(rootNode);
@@ -90,7 +89,7 @@ public class LoopMapAppState extends Screen {
 
     private void spawnEntity(int phase, int element) {
         switch (phase) {
-          case 1 -> screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, element));
+            case 1 -> screenController.entityAppState.spawn(new Slime(new Vector3f(0, 1, 64), 1, element));
         }
     }
 }

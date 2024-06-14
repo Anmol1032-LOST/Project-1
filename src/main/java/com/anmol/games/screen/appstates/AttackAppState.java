@@ -3,7 +3,6 @@ package com.anmol.games.screen.appstates;
 import com.anmol.games.Assets;
 import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
-import com.anmol.games.LOST;
 import com.anmol.games.screen.Screen;
 import com.anmol.games.screen.appstates.entity.AbstractEntity;
 import com.anmol.games.screen.appstates.entity.EntityAppState;
@@ -15,11 +14,8 @@ import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
 import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
-import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
-import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.CenterQuad;
 import com.jme3.scene.shape.Line;
 
 public class AttackAppState extends Screen {
@@ -157,7 +153,7 @@ public class AttackAppState extends Screen {
                     e.damage(2);
                 }
 
-                GlobalVariables.data.player_elementalStamina += 0.07f;
+                GlobalVariables.data.player_elementalStamina = Math.min(GlobalVariables.data.player_elementalStamina + 0.007f, 1);
 
                 if (A1 != null) {
                     rootNode.detachChild(A1);
@@ -188,7 +184,7 @@ public class AttackAppState extends Screen {
         if (A1 != null) {
             float time = A1.getUserData("time");
             if (time > 0) {
-                A1.setUserData("time", time-tpf);
+                A1.setUserData("time", time - tpf);
             } else {
                 rootNode.detachChild(A1);
                 A1 = null;

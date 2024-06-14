@@ -86,11 +86,11 @@ public class Entities extends Screen {
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
         if (!isPressed && name.equals("Entities.click")) {
-                if (selectedBox.getUserData("selected") != null) {
-                    // todo
-                } else {
-                    switchScreen(screenController.screen0);
-                }
+            if (selectedBox.getUserData("selected") != null) {
+                // todo
+            } else {
+                switchScreen(screenController.screen0);
+            }
         }
     }
 

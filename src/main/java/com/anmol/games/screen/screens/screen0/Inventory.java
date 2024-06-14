@@ -25,6 +25,8 @@ public class Inventory extends Screen {
     Vector3f vec2 = new Vector3f(0, 0, -1);
     Vector3f pos = new Vector3f();
     String[][] materialInfo = new String[6][4];
+    Geometry icon;
+    BitmapText info;
 
     @Override
     protected void init() {
@@ -52,22 +54,22 @@ public class Inventory extends Screen {
             guiNode.attachChild(selectedBox);
         }
 
-        float w = LOST.width*3/4/2 / 7;
+        float w = LOST.width * 3 / 4 / 2 / 7;
         for (int i = 0; i < 6; i++) {
             for (int o = 0; o < 4; o++) {
-                Geometry g = new Geometry("", new CenterQuad(w-2, w-2));
+                Geometry g = new Geometry("", new CenterQuad(w - 2, w - 2));
                 g.setMaterial(Assets.mat.clone());
                 g.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
                 g.getMaterial().setTexture("ColorMap", Assets.textures.get("Textures/Materials/C" + i + "L" + o + ".png"));
-                g.setLocalTranslation(LOST.width/2 - LOST.width*3/4f/2 + i*w + w, LOST.height/2 + LOST.height*3/4f/2 - o*w -w, 1);
-                g.setUserData("info", "Owned: " + GlobalVariables.data.inventory[i][o] + '\n'  + materialInfo[i][o]);
+                g.setLocalTranslation(LOST.width / 2 - LOST.width * 3 / 4f / 2 + i * w + w, LOST.height / 2 + LOST.height * 3 / 4f / 2 - o * w - w, 1);
+                g.setUserData("info", "Owned: " + GlobalVariables.data.inventory[i][o] + '\n' + materialInfo[i][o]);
                 intractable.attachChild(g);
             }
         }
 
         float height = LOST.height * 3 / 4 / 2 - 64;
         icon = new Geometry("", new CenterQuad(height, height));
-        icon.setLocalTranslation(LOST.width/2 + LOST.width*3/4f/2 - height/4 - LOST.width*3/4/4, LOST.height/2 + LOST.height*3/4f/2 - height/2 - 64, 0);
+        icon.setLocalTranslation(LOST.width / 2 + LOST.width * 3 / 4f / 2 - height / 4 - LOST.width * 3 / 4 / 4, LOST.height / 2 + LOST.height * 3 / 4f / 2 - height / 2 - 64, 0);
         icon.setMaterial(Assets.mat.clone());
         icon.getMaterial().getAdditionalRenderState().setBlendMode(RenderState.BlendMode.Alpha);
         guiNode.attachChild(icon);
@@ -75,18 +77,13 @@ public class Inventory extends Screen {
         info = new BitmapText(Assets.font.get("Font"));
         info.setColor(ColorRGBA.White);
         info.setText("");
-        info.setSize(info.getFont().getCharSet().getRenderedSize()/3f);
-        info.setBox(new Rectangle(LOST.width/2 + LOST.width*3/4f/2 - height/4 - LOST.width*3/4/4 - height/2, LOST.height/2 + LOST.height*3/4f/2 - height/2 - 64 - height*1.5f, height, height));
+        info.setSize(info.getFont().getCharSet().getRenderedSize() / 3f);
+        info.setBox(new Rectangle(LOST.width / 2 + LOST.width * 3 / 4f / 2 - height / 4 - LOST.width * 3 / 4 / 4 - height / 2, LOST.height / 2 + LOST.height * 3 / 4f / 2 - height / 2 - 64 - height * 1.5f, height, height));
         info.setAlignment(BitmapFont.Align.Center);
         info.setVerticalAlignment(BitmapFont.VAlign.Center);
         info.setLocalTranslation(0, info.getHeight(), 5);
         guiNode.attachChild(info);
     }
-
-    Geometry icon;
-    BitmapText info;
-
-
 
     @Override
     public void setEnabled(boolean enabled) {
