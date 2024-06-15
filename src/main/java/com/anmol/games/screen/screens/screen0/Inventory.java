@@ -32,9 +32,9 @@ public class Inventory extends Screen {
     protected void init() {
         for (int i = 0; i < 6; i++) {
             materialInfo[i][0] = "A crystal of " + Constants.GAME_ELEMENT_NAMES[i] + " Existence.";
-            materialInfo[i][1] = "A crystal that can find the orbs of " + Constants.GAME_ELEMENT_NAMES[i] + " Existence.";
-            materialInfo[i][2] = "A sheet full of " + Constants.GAME_ELEMENT_NAMES[i] + " elemental Energy, can be use to level up element.";
-            materialInfo[i][3] = "A orb full of " + Constants.GAME_ELEMENT_NAMES[i] + " elemental Energy, with paranoma existence as a protective membrane, can be used to create elemental multiplier.";
+            materialInfo[i][1] = "A crystal of " + Constants.GAME_ELEMENT_NAMES[i] + " Existence with some Paranoma Existence.";
+            materialInfo[i][2] = "A sheet full of " + Constants.GAME_ELEMENT_NAMES[i] + " elemental Existence and Paranoma Existence.";
+            materialInfo[i][3] = "A orb full of " + Constants.GAME_ELEMENT_NAMES[i] + " elemental Energy, with Paranoma Existence as a protective membrane.";
         }
 
         screenController.app.getInputManager().addMapping("Inventory.click", new MouseButtonTrigger(MouseInput.BUTTON_LEFT));

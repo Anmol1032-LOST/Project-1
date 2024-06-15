@@ -57,7 +57,7 @@ public class LOST extends SimpleApplication {
             settings.setVSync(false);
         } else {
             settings.setVSync(true);
-            settings.setFrameRate(35);
+            settings.setFrameRate(60);
             settings.setFullscreen(true);
         }
 

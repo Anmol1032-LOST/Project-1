@@ -17,12 +17,14 @@ import com.jme3.math.Ray;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
 import com.jme3.scene.shape.Line;
+import com.jme3.scene.shape.Sphere;
 
 public class AttackAppState extends Screen {
     boolean isA2 = false;
     float A2Timer = 0;
 
     Geometry A1;
+    Geometry A2;
 
 
     @Override
@@ -142,7 +144,7 @@ public class AttackAppState extends Screen {
         Ray ray = new Ray(screenController.app.getCamera().getLocation(), screenController.app.getCamera().getDirection());
         screenController.app.getRootNode().collideWith(ray, collisionResults);
         if (collisionResults.size() >= 1 && collisionResults.getClosestCollision().getDistance() < 32) {
-            Spatial s = collisionResults.getClosestCollision().getGeometry();
+            Geometry s = collisionResults.getClosestCollision().getGeometry();
             AbstractEntity e = EntityAppState.getEntity(s);
             if (e != null) {
                 if (GlobalVariables.element == e.element) {
@@ -158,8 +160,9 @@ public class AttackAppState extends Screen {
                 if (A1 != null) {
                     rootNode.detachChild(A1);
                 }
-                A1 = new Geometry("", new Line(screenController.app.getCamera().getLocation().add(FastMath.rand.nextFloat(-1, 1), FastMath.rand.nextFloat(-1, 1), FastMath.rand.nextFloat(-1, 1)), e.spatial.getLocalTranslation()));
+                A1 = new Geometry("", s.getMesh().clone());
                 A1.setMaterial(Assets.mat.clone());
+                A1.setLocalTranslation(collisionResults.getClosestCollision().getContactPoint());
                 A1.getMaterial().getAdditionalRenderState().setWireframe(true);
                 A1.getMaterial().setColor("Color", Constants.GAME_COLORS[GlobalVariables.element]);
                 A1.setUserData("time", 0.3f);
@@ -169,6 +172,35 @@ public class AttackAppState extends Screen {
     }
 
     private void A2() {
+        CollisionResults collisionResults = new CollisionResults();
+        Ray ray = new Ray(screenController.app.getCamera().getLocation(), screenController.app.getCamera().getDirection());
+        screenController.app.getRootNode().collideWith(ray, collisionResults);
+        if (collisionResults.size() >= 1 && collisionResults.getClosestCollision().getDistance() < 512) {
+            Spatial s = collisionResults.getClosestCollision().getGeometry();
+            AbstractEntity e = EntityAppState.getEntity(s);
+            if (e != null) {
+                if (GlobalVariables.element == e.element) {
+                    e.damage(5);
+                } else if ((GlobalVariables.element + 2) % 6 == e.element) {
+                    e.damage(20);
+                } else {
+                    e.damage(10);
+                }
+
+                GlobalVariables.data.player_elementalStamina = Math.min(GlobalVariables.data.player_elementalStamina + 0.017f, 1);
+
+                if (A2 != null) {
+                    rootNode.detachChild(A2);
+                }
+                A2 = new Geometry("", new Sphere(6, 6, 2));
+                A2.setLocalTranslation(collisionResults.getClosestCollision().getContactPoint());
+                A2.setMaterial(Assets.mat.clone());
+                A2.getMaterial().getAdditionalRenderState().setWireframe(true);
+                A2.getMaterial().setColor("Color", Constants.GAME_COLORS[GlobalVariables.element]);
+                A2.setUserData("time", 0.42f);
+                rootNode.attachChild(A2);
+            }
+        }
     }
 
     private void B1() {
@@ -185,9 +217,21 @@ public class AttackAppState extends Screen {
             float time = A1.getUserData("time");
             if (time > 0) {
                 A1.setUserData("time", time - tpf);
+                A1.setLocalScale(1+time/0.3f);
             } else {
                 rootNode.detachChild(A1);
                 A1 = null;
+            }
+        }
+
+        if (A2 != null) {
+            float time = A2.getUserData("time");
+            if (time > 0) {
+                A2.setUserData("time", time - tpf);
+                A2.setLocalScale(time/0.42f);
+            } else {
+                rootNode.detachChild(A2);
+                A2 = null;
             }
         }
     }
