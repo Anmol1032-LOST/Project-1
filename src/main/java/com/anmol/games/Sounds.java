@@ -7,6 +7,7 @@ import com.jme3.audio.AudioNode;
 public class Sounds {
     public static AudioNode clickSound;
     public static AudioNode initSound;
+    public static AudioNode forst;
 
     public static void load(AssetManager assetManager) {
         clickSound = new AudioNode(assetManager, "Sounds/IntroAndGui/ClickSound.wav", AudioData.DataType.Buffer);
@@ -18,5 +19,8 @@ public class Sounds {
         initSound.setLooping(false);
         initSound.setVolume(0.5f);
         initSound.setPositional(false);
+
+        forst = new AudioNode(assetManager, "Sounds/Entity/Forst.wav", AudioData.DataType.Buffer);
+        forst.setLooping(false);
     }
 }
