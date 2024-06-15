@@ -12,14 +12,15 @@ import com.jme3.scene.Node;
 import com.jme3.scene.Spatial;
 
 public class Forst extends AbstractEntity {
+    boolean isActive = false;
+    float t = 0;
+
     public Forst(Vector3f pos, int level, int element) {
         super(pos, level, element);
         setName("Forst");
-        maxHp = 63*level;
+        maxHp = 63 * level;
         hp = maxHp;
     }
-
-    boolean isActive = false;
 
     @Override
     protected void init() {
@@ -31,8 +32,6 @@ public class Forst extends AbstractEntity {
     protected Spatial genrateSpatial() {
         return Assets.models.get("Models/Entities/Forst.glb").clone();
     }
-
-    float t = 0;
 
     @Override
     protected void update(float tpf) {
@@ -48,8 +47,8 @@ public class Forst extends AbstractEntity {
             }
         } else if (t < 1) {
             t += tpf;
-            ((Node) spatial).getChild("1").setLocalScale(1-t, 1-t, 1-t);
-            ((Node) spatial).getChild("2").setLocalScale(1+t*5, 1+t*5, 1+t*5);
+            ((Node) spatial).getChild("1").setLocalScale(1 - t, 1 - t, 1 - t);
+            ((Node) spatial).getChild("2").setLocalScale(1 + t * 5, 1 + t * 5, 1 + t * 5);
         } else {
             if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 8)) {
                 GlobalVariables.data.player_hp -= hp;

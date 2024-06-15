@@ -4,7 +4,7 @@ import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
 import com.anmol.games.screen.appstates.entity.entities.Forst;
-import com.anmol.games.screen.appstates.entity.entities.Slime;
+import com.anmol.games.screen.appstates.entity.entities.Treeko;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -78,8 +78,8 @@ public class LoopMapAppState extends Screen {
     private void spawnEntity(int phase) {
         switch (phase) {
             case 1 -> {
-                screenController.entityAppState.spawn(new Forst(new Vector3f(0, 3, 32), 1, 1));
-                screenController.entityAppState.spawn(new Forst(new Vector3f(0, 3, 36), 1, 1));
+                screenController.entityAppState.spawn(new Treeko(new Vector3f(0, 3, 32), 1, 1));
+                screenController.entityAppState.spawn(new Treeko(new Vector3f(0, 3, 0), 1, 1));
                 screenController.entityAppState.spawn(new Forst(new Vector3f(0, 3, 38), 1, 1));
             }
         }

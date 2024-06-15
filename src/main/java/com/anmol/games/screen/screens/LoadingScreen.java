@@ -34,6 +34,7 @@ public class LoadingScreen extends Screen {
     Node interactable = new Node();
     Vector3f vec2 = new Vector3f(0, 0, -1);
     Vector3f vec1 = new Vector3f();
+    int clicked = 0;
 
     @Override
     protected void init() {
@@ -155,8 +156,6 @@ public class LoadingScreen extends Screen {
 
     }
 
-    int clicked = 0;
-
     @Override
     public void update(float tpf) {
         t += tpf;
@@ -166,7 +165,7 @@ public class LoadingScreen extends Screen {
             throw new RuntimeException(error);
         }
 
-        if (t0 > 4f/(clicked+1)) {
+        if (t0 > 4f / (clicked + 1)) {
             t0 = 0;
             Geometry g = new Geometry("", new CenterQuad(64, 64));
             g.setMaterial(Assets.mat.clone());
@@ -233,7 +232,7 @@ public class LoadingScreen extends Screen {
                 Geometry selected = selectedBox.getUserData("selected");
                 loadingBar.getMaterial().setColor("Color", selected.getUserData("color"));
                 interactable.detachChild(selected);
-                clicked ++;
+                clicked++;
                 Sounds.clickSound.play();
             }
         }
