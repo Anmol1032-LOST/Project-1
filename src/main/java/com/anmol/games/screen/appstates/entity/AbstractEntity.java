@@ -28,7 +28,6 @@ public abstract class AbstractEntity extends Node {
 
     protected abstract Spatial genrateSpatial();
 
-
     protected abstract void update(float tpf);
 
     public void damage(int i) {

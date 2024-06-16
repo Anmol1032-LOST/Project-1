@@ -4,7 +4,6 @@ import com.anmol.games.Assets;
 import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.appstates.entity.AbstractEntity;
-import com.jme3.anim.AnimComposer;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Node;
@@ -12,6 +11,7 @@ import com.jme3.scene.Spatial;
 
 public class Treeko extends AbstractEntity {
     float t = 0;
+    float generatedTime = 1;
 
     public Treeko(Vector3f pos, int level, int element) {
         super(pos, level, element);
@@ -41,12 +41,9 @@ public class Treeko extends AbstractEntity {
                 damage(level);
             }
         } else {
-            spatial.move(GlobalVariables.data.player_pos.subtract(spatial.getLocalTranslation()).normalizeLocal().multLocal(tpf*6));
+            spatial.move(GlobalVariables.data.player_pos.subtract(spatial.getLocalTranslation()).normalizeLocal().multLocal(tpf * 6));
         }
     }
-
-    float generatedTime = 1;
-
 
     @Override
     protected void onDeath() {

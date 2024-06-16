@@ -41,8 +41,8 @@ public class Django extends AbstractEntity {
             entityAppState.spawn(new Treeko(spatial.getLocalTranslation(), level, element));
         }
 
-        float v = (FastMath.sin(t2 / 3) + FastMath.sin(t2 / 2))*5;
-        vec.set((FastMath.sin(v)) * 30, 30, FastMath.cos(v)*30);
+        float v = (FastMath.sin(t2 / 3) + FastMath.sin(t2 / 2)) * 5;
+        vec.set((FastMath.sin(v)) * 30, 30, FastMath.cos(v) * 30);
 
         vec.addLocal(GlobalVariables.data.player_pos);
 

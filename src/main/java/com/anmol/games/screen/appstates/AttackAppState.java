@@ -12,11 +12,9 @@ import com.jme3.input.MouseInput;
 import com.jme3.input.controls.KeyTrigger;
 import com.jme3.input.controls.MouseAxisTrigger;
 import com.jme3.input.controls.MouseButtonTrigger;
-import com.jme3.math.FastMath;
 import com.jme3.math.Ray;
 import com.jme3.scene.Geometry;
 import com.jme3.scene.Spatial;
-import com.jme3.scene.shape.Line;
 import com.jme3.scene.shape.Sphere;
 
 public class AttackAppState extends Screen {
@@ -217,7 +215,7 @@ public class AttackAppState extends Screen {
             float time = A1.getUserData("time");
             if (time > 0) {
                 A1.setUserData("time", time - tpf);
-                A1.setLocalScale(1+time/0.03f);
+                A1.setLocalScale(1 + time / 0.03f);
             } else {
                 rootNode.detachChild(A1);
                 A1 = null;
@@ -228,7 +226,7 @@ public class AttackAppState extends Screen {
             float time = A2.getUserData("time");
             if (time > 0) {
                 A2.setUserData("time", time - tpf);
-                A2.setLocalScale(time/0.42f);
+                A2.setLocalScale(time / 0.42f);
             } else {
                 rootNode.detachChild(A2);
                 A2 = null;

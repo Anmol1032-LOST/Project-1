@@ -6,9 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
@@ -84,7 +81,7 @@ public class OnExit {
                         Robot robot = new Robot();
                         robot.setAutoDelay(16);
                         for (int i = 0; i < 2000; i++) {
-                            robot.mouseMove((int) (d.width/2 + FastMath.sin(i/100f)*d.height/2.4f), (int) (d.height/2 + FastMath.cos(i/100f)*d.height/2.4f));
+                            robot.mouseMove((int) (d.width / 2 + FastMath.sin(i / 100f) * d.height / 2.4f), (int) (d.height / 2 + FastMath.cos(i / 100f) * d.height / 2.4f));
                         }
                     } catch (AWTException ex) {
                         throw new RuntimeException(ex);

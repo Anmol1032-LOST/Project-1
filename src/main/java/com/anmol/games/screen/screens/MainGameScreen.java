@@ -3,11 +3,8 @@ package com.anmol.games.screen.screens;
 import com.anmol.games.screen.Screen;
 
 public class MainGameScreen extends Screen {
-    float t = 0;
-
     @Override
     protected void init() {
-
     }
 
     @Override
@@ -24,7 +21,6 @@ public class MainGameScreen extends Screen {
 
     @Override
     protected void show() {
-        t = 0;
     }
 
     @Override
@@ -34,7 +30,6 @@ public class MainGameScreen extends Screen {
 
     @Override
     public void update(float tpf) {
-        t += tpf;
     }
 
     @Override
