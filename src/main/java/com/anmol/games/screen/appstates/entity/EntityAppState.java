@@ -29,6 +29,7 @@ public class EntityAppState extends Screen {
 
     public void spawn(AbstractEntity abstractEntity) {
         abstractEntity.entityAppState = this;
+        abstractEntity.init();
         if (!GlobalVariables.lostMap) {
             tmpEntities_.add(abstractEntity);
             entityNode_.attachChild(abstractEntity);
@@ -45,7 +46,7 @@ public class EntityAppState extends Screen {
 
     @Override
     protected void show() {
-
+        entities.forEach(entityNode::attachChild);
     }
 
     @Override

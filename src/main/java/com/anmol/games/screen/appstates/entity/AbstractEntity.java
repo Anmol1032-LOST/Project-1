@@ -20,7 +20,6 @@ public abstract class AbstractEntity extends Node {
         this.spatial = genrateSpatial();
         this.attachChild(spatial);
         spatial.setLocalTranslation(pos);
-        init();
     }
 
 

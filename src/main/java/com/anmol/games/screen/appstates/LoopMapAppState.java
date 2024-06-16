@@ -6,6 +6,8 @@ import com.anmol.games.screen.Screen;
 import com.anmol.games.screen.appstates.entity.entities.Django;
 import com.anmol.games.screen.appstates.entity.entities.Forst;
 import com.anmol.games.screen.appstates.entity.entities.Slime;
+import com.anmol.games.screen.appstates.entity.entities.pranoma.Paranoma1;
+import com.anmol.games.screen.appstates.entity.entities.pranoma.ParanomaCube;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -79,12 +81,13 @@ public class LoopMapAppState extends Screen {
     private void spawnEntity(int phase) {
         switch (phase) {
             case 1 -> {
-                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 1, 1));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 10, 64), 1, 2));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(8, 10, 64), 1, 3));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(-8, 10, 64), 1, 4));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 10, 64), 1, 5));
-                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 10, 64), 1, 0));
+                screenController.entityAppState.spawn(new Paranoma1(new Vector3f(0, 24, 0), -127));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 1, 1));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 10, 64), 1, 2));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(8, 10, 64), 1, 3));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-8, 10, 64), 1, 4));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 10, 64), 1, 5));
+//                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 10, 64), 1, 0));
             }
             case 2 -> {
                 screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 3, 0));

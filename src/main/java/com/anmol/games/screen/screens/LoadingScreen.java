@@ -165,7 +165,7 @@ public class LoadingScreen extends Screen {
             throw new RuntimeException(error);
         }
 
-        if (t0 > 4f / (clicked + 1)) {
+        if (t0 > 4f / (clicked*clicked + 1)) {
             t0 = 0;
             Geometry g = new Geometry("", new CenterQuad(64, 64));
             g.setMaterial(Assets.mat.clone());
