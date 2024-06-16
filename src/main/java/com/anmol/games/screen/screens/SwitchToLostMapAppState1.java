@@ -97,6 +97,9 @@ public class SwitchToLostMapAppState1 extends Screen {
     @Override
     protected void action(String name, boolean isPressed, float tpf) {
         if (!isPressed && name.equals("SwitchToLostMapAppState1.click")) {
+            if (screenController.loopMapAppState.phase == GlobalVariables.data.story_phase && screenController.loopMapAppState.element == 6) {
+                GlobalVariables.data.story_phase++;
+            }
             switchScreen(screenController.mainGameGuiScreen);
             screenController.loopMapAppState.setEnabled(false);
             screenController.lostMapAppState.setEnabled(true);

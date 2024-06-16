@@ -12,7 +12,6 @@ import com.jme3.scene.Spatial;
 
 public class Treeko extends AbstractEntity {
     float t = 0;
-    AnimComposer control;
 
     public Treeko(Vector3f pos, int level, int element) {
         super(pos, level, element);
@@ -24,8 +23,6 @@ public class Treeko extends AbstractEntity {
     @Override
     protected void init() {
         ((Geometry) ((Node) spatial).getChild(0)).getMaterial().setColor("BaseColor", Constants.GAME_COLORS[element]);
-        control = ((Node) spatial).getChild(0).getControl(AnimComposer.class);
-        control.setCurrentAction("IcosphereAction");
     }
 
     @Override
@@ -35,20 +32,13 @@ public class Treeko extends AbstractEntity {
 
     @Override
     protected void update(float tpf) {
-        if (generatedTime > 0) {
-            generatedTime -= tpf;
-            return;
-        } else {
-            generatedTime = 0;
-            ((Node) spatial).getChild(0).removeControl(control);
-        }
-
         t += tpf;
 
         if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 8)) {
             if (t > 0.037) {
                 t = 0;
                 GlobalVariables.data.player_hp -= level;
+                damage(level);
             }
         } else {
             spatial.move(GlobalVariables.data.player_pos.subtract(spatial.getLocalTranslation()).normalizeLocal().multLocal(tpf*6));

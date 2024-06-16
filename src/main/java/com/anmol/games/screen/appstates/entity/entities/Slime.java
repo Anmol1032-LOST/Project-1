@@ -35,12 +35,12 @@ public class Slime extends AbstractEntity {
             t += tpf;
             if (t > 0.07f) {
                 t = 0;
-                float c = (float) hp / maxHp;
-                ((Node) spatial).getChild("MainGeo").setLocalScale(c, c, c);
                 GlobalVariables.data.player_hp -= 1;
                 damage(1);
             }
         }
+        float c = (float) hp / maxHp;
+        ((Node) spatial).getChild("MainGeo").setLocalScale(c, c, c);
     }
 
     @Override

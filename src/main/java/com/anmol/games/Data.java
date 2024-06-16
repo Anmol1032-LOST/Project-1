@@ -12,7 +12,7 @@ public class Data implements Serializable {
     public long player_maxHp;
     public float player_stamina;
     public float player_elementalStamina;
-    public long story_phase;
+    public int story_phase;
     public long[] story_orbs;
     public float[] player_B1Time;
     public float[] player_B2Time;
@@ -20,7 +20,7 @@ public class Data implements Serializable {
     public ArrayList<AbstractEntity> entities;
     public long[][] inventory;
 
-    public Data(Vector3f player_pos, long player_hp, long player_maxHp, float player_stamina, float player_elementalStamina, long story_phase, long[] story_orbs, float[] player_B1Time, float[] player_B2Time, float[] player_XTime, ArrayList<AbstractEntity> entities, long[][] inventory) {
+    public Data(Vector3f player_pos, long player_hp, long player_maxHp, float player_stamina, float player_elementalStamina, int story_phase, long[] story_orbs, float[] player_B1Time, float[] player_B2Time, float[] player_XTime, ArrayList<AbstractEntity> entities, long[][] inventory) {
         this.player_pos = player_pos;
         this.player_hp = player_hp;
         this.player_maxHp = player_maxHp;

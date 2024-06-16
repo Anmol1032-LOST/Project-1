@@ -160,12 +160,12 @@ public class AttackAppState extends Screen {
                 if (A1 != null) {
                     rootNode.detachChild(A1);
                 }
-                A1 = new Geometry("", s.getMesh().clone());
+                A1 = new Geometry("", new Sphere(6, 6, 1));
                 A1.setMaterial(Assets.mat.clone());
                 A1.setLocalTranslation(collisionResults.getClosestCollision().getContactPoint());
                 A1.getMaterial().getAdditionalRenderState().setWireframe(true);
                 A1.getMaterial().setColor("Color", Constants.GAME_COLORS[GlobalVariables.element]);
-                A1.setUserData("time", 0.3f);
+                A1.setUserData("time", 0.03f);
                 rootNode.attachChild(A1);
             }
         }
@@ -192,7 +192,7 @@ public class AttackAppState extends Screen {
                 if (A2 != null) {
                     rootNode.detachChild(A2);
                 }
-                A2 = new Geometry("", new Sphere(6, 6, 2));
+                A2 = new Geometry("", new Sphere(6, 6, 3));
                 A2.setLocalTranslation(collisionResults.getClosestCollision().getContactPoint());
                 A2.setMaterial(Assets.mat.clone());
                 A2.getMaterial().getAdditionalRenderState().setWireframe(true);
@@ -217,7 +217,7 @@ public class AttackAppState extends Screen {
             float time = A1.getUserData("time");
             if (time > 0) {
                 A1.setUserData("time", time - tpf);
-                A1.setLocalScale(1+time/0.3f);
+                A1.setLocalScale(1+time/0.03f);
             } else {
                 rootNode.detachChild(A1);
                 A1 = null;

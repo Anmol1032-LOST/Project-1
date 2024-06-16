@@ -95,7 +95,7 @@ public class SwitchToLoopMapAppState2 extends Screen {
                         noIntractable.attachChild(g);
                     }
                 } else {
-                    if (n <= Long.bitCount(GlobalVariables.data.story_phase)) {
+                    if (n <= GlobalVariables.data.story_phase) {
                         mat.setColor("Color", ColorRGBA.White);
                         intractable.attachChild(g);
 
