@@ -17,31 +17,13 @@ import java.util.Objects;
 public class OnExit {
     public static void exit() {
         try {
-            Thread.sleep(7000);
+            Thread.sleep(17000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
 
         JFrame frame = new JFrame("Paranoma's Message");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                try {
-                    Robot robot = new Robot();
-                    robot.keyPress(KeyEvent.VK_ALT);
-                    robot.keyPress(KeyEvent.VK_F4);
-                    robot.keyRelease(KeyEvent.VK_F4);
-                    robot.keyRelease(KeyEvent.VK_ALT);
-                    robot.delay(700);
-                    robot.keyPress(KeyEvent.VK_ENTER);
-                    robot.keyRelease(KeyEvent.VK_ENTER);
-                    robot.delay(100);
-                } catch (AWTException ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
 
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension dimension = new Dimension(d.width * 3 / 4, d.height * 3 / 4);
