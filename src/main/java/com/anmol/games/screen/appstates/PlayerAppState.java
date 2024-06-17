@@ -1,6 +1,7 @@
 package com.anmol.games.screen.appstates;
 
 import com.anmol.games.Assets;
+import com.anmol.games.Constants;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
 import com.jme3.bullet.collision.shapes.CapsuleCollisionShape;
@@ -116,6 +117,12 @@ public class PlayerAppState extends Screen {
 
     @Override
     public void update(float tpf) {
+        if (GlobalVariables.data.player_hp <= 0) {
+            screenController.lostMapAppState.setEnabled(true);
+            screenController.loopMapAppState.setEnabled(forward);
+            GlobalVariables.data.player_hp = GlobalVariables.data.player_maxHp;
+            teleport(Constants.PLAYER_POS);
+        }
         if (toTeleport != null) {
             player.setPhysicsLocation(toTeleport.clone());
             toTeleport = null;

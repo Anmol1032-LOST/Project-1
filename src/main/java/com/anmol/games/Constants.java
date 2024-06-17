@@ -4,9 +4,9 @@ import com.jme3.math.ColorRGBA;
 import com.jme3.math.Vector3f;
 
 public class Constants {
-    public static final boolean IS_DEVELOPMENT = true;
-    public static final String GAME_NAME = "L.O.S.T.";
-    public static final String GAME_NAME_FULL = "Luminosity of Stygian Transcendent";
+    public static final boolean IS_DEVELOPMENT = false;
+    public static final String GAME_NAME = "Project-1.";
+    public static final String GAME_NAME_FULL = "...";
     public static final ColorRGBA[] GAME_COLORS = new ColorRGBA[]{
             new ColorRGBA(1, 0, 0.5f, 1),
             new ColorRGBA(1, 0.5f, 0, 1),

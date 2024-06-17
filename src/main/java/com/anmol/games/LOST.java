@@ -3,6 +3,7 @@ package com.anmol.games;
 import com.anmol.games.screen.ScreenController;
 import com.jme3.app.SimpleApplication;
 import com.jme3.app.StatsAppState;
+import com.jme3.app.state.AppState;
 import com.jme3.bullet.BulletAppState;
 import com.jme3.renderer.RenderManager;
 import com.jme3.system.AppSettings;
@@ -21,7 +22,7 @@ public class LOST extends SimpleApplication {
     float emptyFrames = 35;
 
     public LOST() {
-        super(new StatsAppState());
+        super(new AppState[0]);
         Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
         if (Constants.IS_DEVELOPMENT) {
             width = dimension.width * 3 / 4f;

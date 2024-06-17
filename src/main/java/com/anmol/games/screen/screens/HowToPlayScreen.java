@@ -14,7 +14,7 @@ import com.jme3.scene.Node;
 
 public class HowToPlayScreen extends Screen {
     final Node cornerNode = new Node();
-    final String data = "Use W, A, S, D to move.\nHold shift to dash.\nClick Mouse Left click to normal attack.\nHold and release Mouse right click for charged attack.\nUse E, Q, X for elemental Attack.\n(Elemental Attack requires Elemental stamina and cooldown)\nUse G to interact.\n\nFind out more by playing the game.";
+    final String data = "Use W, A, S, D to move.\nHold shift to dash.\nMouse Left click for normal attack.\nHold and release Mouse right click for charged attack.";
     float t;
 
     @Override
