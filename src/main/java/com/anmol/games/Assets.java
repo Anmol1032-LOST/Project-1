@@ -59,7 +59,7 @@ public class Assets {
         }
 
         for (String asset : new String[]{"Models/Map/LostMap.glb", "Models/Map/LostMapLowLod.glb", "Models/Map/Center.glb", "Models/Map/Surrounding.glb", "Models/Map/Orb.glb", "Models/Map/LoopMap1.glb", "Models/Map/LoopMap2.glb", "Models/Map/LoopMap3.glb", "Models/Map/LoopMap4.glb", "Models/Map/LoopMap5.glb", "Models/Map/LoopMap6.glb",
-                "Models/Entities/Forst.glb", "Models/Entities/Slime.glb", "Models/Entities/Treeko.glb", "Models/Entities/Django.glb", "Models/Entities/Paranoma.glb"
+                "Models/Entities/Forst.glb", "Models/Entities/Slime.glb", "Models/Entities/Treeko.glb", "Models/Entities/Django.glb", "Models/Entities/Paranoma.glb", "Models/Entities/Test003.glb", "Models/Entities/Reeper.glb", "Models/Entities/OctoGram.glb"
         }) {
             models.put(asset, assetManager.loadModel(asset));
         }

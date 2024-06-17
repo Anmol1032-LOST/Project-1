@@ -117,7 +117,11 @@ public class Paranoma1 extends AbstractEntity {
 
     @Override
     protected void onDeath() {
-
+        for (int i = 0; i < 6; i++) {
+            if (g[i].isAlive) {
+                g[i].damage(g[i].hp);
+            }
+        }
     }
 
     enum Phase {
