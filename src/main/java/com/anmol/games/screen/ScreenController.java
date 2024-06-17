@@ -4,7 +4,6 @@ import com.anmol.games.LOST;
 import com.anmol.games.screen.appstates.*;
 import com.anmol.games.screen.appstates.entity.EntityAppState;
 import com.anmol.games.screen.screens.*;
-import com.anmol.games.screen.screens.screen0.*;
 
 public class ScreenController {
     public final LOST app;
@@ -26,13 +25,13 @@ public class ScreenController {
     public final GameGui gameGui = new GameGui();
     public final EntityAppState entityAppState = new EntityAppState();
 
-    public final Screen0 screen0 = new Screen0();
-    public final Element element = new Element();
-    public final Inventory inventory = new Inventory();
-    public final Purchase purchase = new Purchase();
-    public final Crafting crafting = new Crafting();
-    public final Entities entities = new Entities();
-    public final Gadgets gadgets = new Gadgets();
+//    public final Screen0 screen0 = new Screen0();
+//    public final Element element = new Element();
+//    public final Inventory inventory = new Inventory();
+//    public final Purchase purchase = new Purchase();
+//    public final Crafting crafting = new Crafting();
+//    public final Entities entities = new Entities();
+//    public final Gadgets gadgets = new Gadgets();
 
     public final MainGameGuiScreen mainGameGuiScreen = new MainGameGuiScreen();
     public boolean isAllLoaded = false;
@@ -62,18 +61,20 @@ public class ScreenController {
         gameGui.simpleUpdate(tpf);
         entityAppState.simpleUpdate(tpf);
 
-        screen0.simpleUpdate(tpf);
-        element.simpleUpdate(tpf);
-        inventory.simpleUpdate(tpf);
-        purchase.simpleUpdate(tpf);
-        crafting.simpleUpdate(tpf);
-        entities.simpleUpdate(tpf);
-        gadgets.simpleUpdate(tpf);
+//        screen0.simpleUpdate(tpf);
+//        element.simpleUpdate(tpf);
+//        inventory.simpleUpdate(tpf);
+//        purchase.simpleUpdate(tpf);
+//        crafting.simpleUpdate(tpf);
+//        entities.simpleUpdate(tpf);
+//        gadgets.simpleUpdate(tpf);
 
         mainGameGuiScreen.simpleUpdate(tpf);
 
 
-        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded && screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded && switchToLostMapAppState1.loaded && gadgets.loaded;
+        isAllLoaded = startScreen.loaded && aboutCreatorScreen.loaded && settingsScreen.loaded && howToPlayScreen.loaded && beforePlayScreen.loaded && mainGameScreen.loaded && lostMapAppState.loaded && loopMapAppState.loaded && switchToLoopMapAppState1.loaded && switchToLoopMapAppState2.loaded && playerAppState.loaded && attackAppState.loaded && gameGui.loaded && entityAppState.loaded && mainGameGuiScreen.loaded
+                //screen0.loaded && element.loaded && inventory.loaded && purchase.loaded && crafting.loaded && entities.loaded  && gadgets.loaded;
+                && switchToLostMapAppState1.loaded;
     }
 
     public void initAll() {
@@ -93,13 +94,13 @@ public class ScreenController {
         gameGui.init(this);
         entityAppState.init(this);
 
-        screen0.init(this);
-        element.init(this);
-        inventory.init(this);
-        purchase.init(this);
-        crafting.init(this);
-        entities.init(this);
-        gadgets.init(this);
+//        screen0.init(this);
+//        element.init(this);
+//        inventory.init(this);
+//        purchase.init(this);
+//        crafting.init(this);
+//        entities.init(this);
+//        gadgets.init(this);
 
         mainGameGuiScreen.init(this);
     }

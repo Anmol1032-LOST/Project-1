@@ -45,10 +45,10 @@ public class MainGameGuiScreen extends Screen {
             }
         }
 
-        if (!isPressed && name.equals("MainGameGuiScreen.screen0") && !onScreen) {
-            switchScreen(screenController.screen0);
-            onScreen = true;
-        }
+//        if (!isPressed && name.equals("MainGameGuiScreen.screen0") && !onScreen) {
+//            switchScreen(screenController.screen0);
+//            onScreen = true;
+//        }
     }
 
     @Override
