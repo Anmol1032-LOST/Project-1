@@ -3,12 +3,9 @@ package com.anmol.games.screen.appstates;
 import com.anmol.games.Assets;
 import com.anmol.games.GlobalVariables;
 import com.anmol.games.screen.Screen;
-import com.anmol.games.screen.appstates.entity.entities.Django;
-import com.anmol.games.screen.appstates.entity.entities.Forst;
-import com.anmol.games.screen.appstates.entity.entities.OctoGram;
-import com.anmol.games.screen.appstates.entity.entities.Slime;
+import com.anmol.games.screen.appstates.entity.entities.*;
 import com.anmol.games.screen.appstates.entity.entities.pranoma.Paranoma1;
-import com.anmol.games.screen.appstates.entity.entities.pranoma.ParanomaCube;
+import com.anmol.games.screen.appstates.entity.entities.pranoma.Paranoma2;
 import com.jme3.bullet.control.RigidBodyControl;
 import com.jme3.math.Vector3f;
 import com.jme3.scene.Spatial;
@@ -82,12 +79,12 @@ public class LoopMapAppState extends Screen {
     private void spawnEntity(int phase) {
         switch (phase) {
             case 1 -> {
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 1, 1));
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 10, 64), 1, 2));
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(8, 10, 64), 1, 3));
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(-8, 10, 64), 1, 4));
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 10, 64), 1, 5));
-//                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 10, 64), 1, 0));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 1, 1));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(32, 10, 64), 1, 2));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(8, 10, 64), 1, 3));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(-8, 10, 64), 1, 4));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(-32, 10, 64), 1, 5));
+                screenController.entityAppState.spawn(new Slime(new Vector3f(-64, 10, 64), 1, 0));
             }
             case 2 -> {
                 screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 3, 0));
@@ -135,11 +132,92 @@ public class LoopMapAppState extends Screen {
                 screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 1, 4));
                 screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 1, 5));
             }
+            case 10 -> {
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 0));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 1));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 2));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 3));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 4));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, 5));
+            }
+            case 11 -> {
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 0));
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 1));
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 2));
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 3));
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 4));
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, 5));
+
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 0));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 1));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 2));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 3));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 4));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, 5));
+            }
+            case 12 -> {
+                spawnEntity(6);
+                spawnEntity(10);
+            }
+            case 13 -> {
+                spawnEntity(11);
+                spawnEntity(2);
+            }
+            case 14 -> spawnEntity(1);
+            case 15 -> {
+            }
+            case 16 -> screenController.entityAppState.spawn(new Paranoma2(new Vector3f(0, 24, 0), -127));
         }
     }
 
     private void spawnEntity(int phase, int element) {
         switch (phase) {
+            case 1 -> {
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 1, element));
+            }
+            case 2 -> {
+                screenController.entityAppState.spawn(new Slime(new Vector3f(64, 10, 64), 3, element));
+
+                screenController.entityAppState.spawn(new Forst(new Vector3f(64, 10, -64), 1, element));
+            }
+            case 3 -> {
+                spawnEntity(1);
+                screenController.entityAppState.spawn(new Forst(new Vector3f(64, 10, -64), 7, element));
+            }
+            case 5 -> {
+                spawnEntity(4);
+                spawnEntity(2);
+            }
+            case 6 -> {
+                spawnEntity(4);
+                spawnEntity(1);
+
+                screenController.entityAppState.spawn(new Django(new Vector3f(64, 10, 64), 3, element));
+            }
+            case 7 -> {
+                screenController.entityAppState.spawn(new Django(new Vector3f(64, 10, 64), 7, element));
+            }
+            case 9 -> {
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 1, element));
+            }
+            case 10 -> {
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 1, element));
+            }
+            case 11 -> {
+                screenController.entityAppState.spawn(new OctoGram(new Vector3f(0, 24, 0), 5, element));
+                screenController.entityAppState.spawn(new Reeper(new Vector3f(0, 24, 0), 7, element));
+            }
+            case 12 -> {
+                spawnEntity(6);
+                spawnEntity(10);
+            }
+            case 13 -> {
+                spawnEntity(11);
+                spawnEntity(2);
+            }
+            case 14 -> spawnEntity(1);
+            case 15 -> {
+            }
         }
     }
 }

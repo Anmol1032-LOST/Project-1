@@ -12,11 +12,12 @@ import com.jme3.scene.shape.Box;
 
 public class ParanomaCube extends AbstractEntity {
     public Vector3f moveTo = new Vector3f();
-float t;
+    float t;
+
     public ParanomaCube(Vector3f pos, int element) {
         super(pos, 1, element);
         setName("Paranoma Cube");
-        maxHp = 512*level*level;
+        maxHp = 512 * level * level;
         hp = maxHp;
     }
 
@@ -36,15 +37,15 @@ float t;
 
     @Override
     protected void update(float tpf) {
-      spatial.setLocalTranslation(FastMath.interpolateLinear(tpf*16, spatial.getLocalTranslation(), moveTo));
-      spatial.lookAt(GlobalVariables.data.player_pos, Vector3f.UNIT_Y);
-      t += tpf;
-      if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 1)) {
-          if (t > 0.73) {
-              t = 0;
-              GlobalVariables.data.player_hp -= (long) level * level;
-          }
-      }
+        spatial.setLocalTranslation(FastMath.interpolateLinear(tpf * 16, spatial.getLocalTranslation(), moveTo));
+        spatial.lookAt(GlobalVariables.data.player_pos, Vector3f.UNIT_Y);
+        t += tpf;
+        if (GlobalVariables.data.player_pos.isSimilar(spatial.getLocalTranslation(), 1)) {
+            if (t > 0.73) {
+                t = 0;
+                GlobalVariables.data.player_hp -= (long) level * level;
+            }
+        }
     }
 
     @Override

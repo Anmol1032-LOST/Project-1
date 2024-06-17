@@ -15,6 +15,7 @@ import com.jme3.scene.shape.Sphere;
 class OctoGramOrb extends AbstractEntity {
     final Vector3f dir;
     float t = 0;
+
     public OctoGramOrb(Vector3f pos, int level, int element, Vector3f dir) {
         super(pos, level, element);
         setName("Octo Gram Orb");
@@ -89,10 +90,10 @@ public class OctoGram extends AbstractEntity {
             if (FastMath.rand.nextInt(3) == 0) {
                 t2 = FastMath.rand.nextFloat(-100, 100);
             }
-            entityAppState.spawn(new OctoGramOrb(spatial.getLocalTranslation(), level*16, element, GlobalVariables.data.player_pos.subtract(spatial.getLocalTranslation())));
+            entityAppState.spawn(new OctoGramOrb(spatial.getLocalTranslation(), level * 16, element, GlobalVariables.data.player_pos.subtract(spatial.getLocalTranslation())));
         }
 
-        float v = (FastMath.sin(t2/3) + FastMath.sin(t2/5)) * 3;
+        float v = (FastMath.sin(t2 / 3) + FastMath.sin(t2 / 5)) * 3;
         vec.set((FastMath.sin(v)) * 45, 45, FastMath.cos(v) * 45);
 
         vec.addLocal(GlobalVariables.data.player_pos);
